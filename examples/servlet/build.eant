@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="servlet" default="help">
+<project name="log4e_servlet" default="help">
 
 	<description>
 		description: "Log4e configuration servlet example"
@@ -22,7 +22,7 @@
 <!-- Implementation -->
 
 	<target name="init_system">
-		<set name="system" value="servlet"/>
+		<set name="system" value="log4e_servlet"/>
 		<set name="system_dir" value="${LOG4E}/examples/servlet"/>
 	</target>
 
