@@ -65,10 +65,12 @@ feature -- Status report
 				range_max_match := True
 			end
 			
-			if not (range_min_match and range_max_match) then
-				Result := Filter_reject
-			elseif match then
-				Result := Filter_accept
+			if range_min_match and range_max_match then
+				if match then
+					Result := Filter_accept
+				else
+					Result := Filter_reject
+				end
 			else
 				Result := Filter_neutral
 			end
