@@ -11,6 +11,10 @@ indexing
 class
 	L4E_SYSLOG_APPENDER_CONSTANTS
 
+obsolete 
+
+	"This class is not yet fully functional"
+
 feature
 	
 	Syslog_port: INTEGER is 514

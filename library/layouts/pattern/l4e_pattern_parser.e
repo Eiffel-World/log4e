@@ -43,7 +43,7 @@ feature -- Status report
 	
 feature {NONE} -- Implementation
 	
-	Escape_char: CHARACTER is '&'
+	Escape_char: CHARACTER is '@'
 	
 	Literal_state: INTEGER is unique
 	Converter_state: INTEGER is unique

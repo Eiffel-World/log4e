@@ -12,7 +12,7 @@
 
 	<root class="LOG4E_SHARED_CONFIG" creation="make"/>
 
-	<option name="arguments" value="l4e_config.xml"/>
+	<option name="arguments" value="log4e_config.xml"/>
 	<option unless="${DEBUG}">
 		<option name="assertion" value="none"/>
 		<option name="finalize" value="true"/>

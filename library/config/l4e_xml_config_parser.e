@@ -65,13 +65,16 @@ feature -- Parsing
 			-- Log4E topology. Make resulting heirarchy available in 
 			-- 'hierarchy'.
 		do
-			parser := parser_factory.new_toe_eiffel_tree_parser
+			create parser.make
+			create tree_pipe.make
+			parser.set_callbacks (tree_pipe.start)
+			
 			debug ("log4e_config")
 				Internal_log.warn ("Parsing file: " + file_name.out + "...%R%N")
 			end
 			parser.parse_from_file_name (file_name)
-			if parser.last_error = parser.Xml_err_none then
-				process_config_tree (parser.document)
+			if not tree_pipe.error.has_error then
+				process_config_tree (tree_pipe.document)
 			else
 				display_parser_error
 			end
@@ -82,9 +85,9 @@ feature -- Parsing
 			
 feature {NONE} -- Implementation
 
-	parser_factory: expanded XM_PARSER_FACTORY
+	parser: XM_EIFFEL_PARSER
 	
-	parser: XM_TREE_PARSER
+ 	tree_pipe: XM_TREE_CALLBACKS_PIPE
 
 	file_name: UC_STRING
 			-- Name of file to parse.

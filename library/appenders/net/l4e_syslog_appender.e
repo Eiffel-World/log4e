@@ -11,6 +11,10 @@ indexing
 class
 	L4E_SYSLOG_APPENDER
 
+obsolete 
+
+	"This class is not yet fully functional"
+
 inherit
 	
 	L4E_APPENDER

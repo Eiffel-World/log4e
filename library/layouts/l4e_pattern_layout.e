@@ -5,7 +5,7 @@ indexing
 		is composed of literal text and format control expression called conversion
 		specifiers.
 		
-		Each conversion specifier starts with an & character and is followed by
+		Each conversion specifier starts with an @ character and is followed by
 		optional format modifiers and a conversion character. The conversion 
 		character specifies the type of data, e.g., category, priority, date,
 		message. The format modifiers control such things as field width, padding,

@@ -3,7 +3,8 @@ $Id$
 Log4E Shared Configuration Example
 ----------------------------------
 
-This example configures a series of loggers using a shared hierarchy.
+This example configures a series of loggers using a shared hierarchy. The use
+of the class L4E_SHARED_HIERARCHY is demonstrated.
 
 After compiling, run the example and specify the XML configuration file using:
 

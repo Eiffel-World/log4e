@@ -24,7 +24,7 @@
 			<param name="match" value="false"/>
 		</filter>
 		<layout type="pattern">
-			<param name="pattern" value="&amp;d [&amp;-6p] &amp;c - &amp;m"/>
+			<param name="pattern" value="@d [@-6p] @c - @m&#010;"/>
 		</layout>
 	</appender>
 

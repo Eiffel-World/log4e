@@ -10,6 +10,10 @@ indexing
 
 class L4E_ROLL_SERVER_SOCKET
 
+obsolete 
+
+	"This class is not yet fully functional"
+
 inherit
 
 	TCP_SERVER_SOCKET

@@ -9,6 +9,10 @@ indexing
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
 	
 class L4E_EXTERNALLY_ROLLED_FILE_APPENDER
+
+obsolete 
+
+	"This class is not yet fully functional"
 	
 inherit
 	
