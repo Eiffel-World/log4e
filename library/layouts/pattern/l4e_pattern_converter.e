@@ -91,8 +91,8 @@ feature {NONE} -- Implementation
 		local
 			pad: STRING
 		do
-			create pad.make (length)
-			pad.fill_blank
+			create pad.make_filled (' ', length) -- fix for Bug 764301
+
 			str.append (pad)
 		ensure
 			correct_size: str.count >= old str.count + length
