@@ -1,0 +1,173 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Logging appender that writes to an NT event log.">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_NT_EVENT_LOG_APPENDER Flat contracts</TITLE>
+<LINK REL="stylesheet" HREF="../../../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../../../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_nt_event_log_appender_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_nt_event_log_appender_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_NT_EVENT_LOG_APPENDER"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Logging appender that writes to an NT event log."</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html">L4E_NT_EVENT_LOG_APPENDER</A>
+
+<SPAN CLASS="ekeyword">create</SPAN> 
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create new NT event log appender and connect to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> event source.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> NOTE: A registry key will be created for the event source under</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Application\</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with 'name'.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">and then</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_empty</SPAN>
+</A>
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Removal</SPAN>
+
+	<A NAME="f_dispose"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html#f_dispose">dispose</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Close this appender when garbage collected. Perform</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> minimal operations to release resources. Do not call</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> other object as they may have been garbage collected.</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Basic Operations</SPAN>
+
+	<A NAME="f_close"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html#f_close">close</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Release any resources for this appender.</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">closed</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_is_open">is_open</A>
+</A>
+	<A NAME="f_do_append"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html#f_do_append">do_append</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">event</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_event_flatshort.html">L4E_EVENT</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log event on this appender.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">event_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">is_open</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_is_open">is_open</A>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialisation</SPAN>
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create new NT event log appender and connect to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> event source.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> NOTE: A registry key will be created for the event source under</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\Application\</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with 'name'.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">and then</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_empty</SPAN>
+</A>
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_make">appender_make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create new appender with 'name'</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">new_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status Report</SPAN>
+
+	<A NAME="f_is_open"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_is_open">is_open</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Is the appender open for appending?</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_layout"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_layout">layout</A><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_layout_flatshort.html">L4E_LAYOUT</A></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Layout used to format events for this appender. May be Void</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> if no layout is used.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_name"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_name">name</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Name of this appender that uniquely</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> identifies it.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status Setting</SPAN>
+
+	<A NAME="f_add_filter"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_add_filter">add_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_filter_flatshort.html">L4E_FILTER</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Add 'filter' to the list of filters to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> apply when determining if a log event will</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> be processed by this appender.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">filter_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">filter</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">filter_not_added</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_has_filter">has_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">filter_added</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_has_filter">has_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>
+	<A NAME="f_append"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_append">append</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">event</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_event_flatshort.html">L4E_EVENT</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log event on this appender.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">event_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">is_open</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_is_open">is_open</A>
+</A>
+	<A NAME="f_has_filter"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_has_filter">has_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_filter_flatshort.html">L4E_FILTER</A><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Is 'filter' in the list of filters for this</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> appender?</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">filter_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">filter</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_remove_filter"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_remove_filter">remove_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_filter_flatshort.html">L4E_FILTER</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Remove 'filter' from the list of filters for this</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> appender.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">filter_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">filter</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">filter_added</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_has_filter">has_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">filter_removed</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_has_filter">has_filter</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">filter</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>
+	<A NAME="f_set_layout"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_set_layout">set_layout</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_layout</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_layout_flatshort.html">L4E_LAYOUT</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Set the layout that this appender should use.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">layout_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_layout</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_set_name"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appender_flatshort.html#f_set_name">set_name</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Set the name of this appender</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appender_flatshort.html">L4E_APPENDER</A>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">invariant</SPAN>
+
+		<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ANY</SPAN>
+	<SPAN CLASS="etag">reflexive_equality</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">standard_is_equal</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+	<SPAN CLASS="etag">reflexive_conformance</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">conforms_to</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_NT_EVENT_LOG_APPENDER<FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_nt_event_log_appender_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_nt_event_log_appender_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_NT_EVENT_LOG_APPENDER"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

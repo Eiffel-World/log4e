@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>Goanna Compilation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="style/site.css" type="text/css">
+</head>
+
+<body bgcolor="#FFCC99" text="#000000">
+<p><img src="images/headings_r14_c20.gif" width="121" height="49"></p>
+<p class="indentp">The Goanna Log4E library and examples use the GOBO geant and 
+  gexace tools to perform Ace file generation and to control the compilation process. 
+  You will need to have a recent CVS version of GOBO on your system to build Goanna.</p>
+<p class="indentp">All scripts rely on the enviornment variable LOG4E which should 
+  be set to the root directory of the Goanna Log4E installation.</p>
+<p class="indentp">To initialise the library, build all examples and all tools, 
+  you can run geant on the build.eant file located in the root directory of the 
+  installation.</p>
+<p class="indentp">The build rules provided by the geant files include:</p>
+<ul>
+  <li><span class="code">install</span> - prepare the directory for use. ie, generate 
+    compiler specific source files and Ace files.</li>
+  <li><span class="code">compile</span> - using the value of the <span class="code">GOBO_EIFFEL</span> 
+    environment variable compile all tools and examples using either the SmallEiffel 
+    ('<span class="code">se</span>') compiler or ISE ('<span class="code">ise</span>') 
+    compiler.</li>
+  <li><span class="code">compile_debug</span> - compile in debug mode with all 
+    assertion checking on.</li>
+  <li><span class="code">clean</span> - remove temporary build files.</li>
+  <li><span class="code">clobber</span> - remove all build files including generated 
+    executables.</li>
+</ul>
+<p class="indentp">For example, to build the logvision example using ISE Eiffel 
+  on Unix, run:</p>
+<p class="indentcode">cd $LOG4E/examples/vision<br>
+  set GOBO_EIFFEL=ise<br>
+  geant compile</p>
+<p class="indentp">This will compile the example using ISE Eiffel in finalization 
+  mode. An executable will be generated in the current directory. If you need 
+  to compile in debug mode, then use the build rule '<span class="code">compile_debug</span>' 
+  instead. To use the SmallEiffel compiler set the <span class="code">GOBO_EIFFEL</span> 
+  variable to '<span class="code">se</span>'. You can also force the use of a 
+  particular compiler by using the build rules '<span class="code">compile_ise</span>', 
+  '<span class="code">compile_se</span>', '<span class="code">compile_debug_ise</span>' 
+  and '<span class="code">compile_debug_se</span>'.</p>
+<p class="indentp">Build rules are also provided to compile with the HACT and 
+  VisualEiffel compilers, however no testing has been performed using these compilers. 
+  If you have any success with these compilers please let <a href="mailto:glennmaughan@goanna.info">Glenn 
+  Maughan</a> know.</p>
+<p class="indentp">If you run <span class="code">geant</span> without any arguments 
+  it will display the build rules available in the '<span class="code">build.eant</span>' 
+  file found in the current directory.</p>
+<p class="indentp"><span class="indentp">Note, some of the library clusters and 
+  examples will not compile under SmallEiffel. They will be ported to SmallEiffel 
+  when time permits and compiler support allows. The following table shows the 
+  progress of the porting effort.</span></p>
+<div class="indentp">
+  <table border="0" class="p" width="75%">
+    <tr bgcolor="lightgrey" align="center"> 
+      <td align="left" width="48%"><b>Cluster/Application</b></td>
+      <td width="26%"><b>ISE Eiffel</b></td>
+      <td width="26%"><b>SmallEiffel</b></td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/appenders</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/appenders/net</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (multithreading)</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/appenders/nt</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (external)</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/config</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/filters</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/helpers</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/layouts</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">library/layouts/pattern</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/config/manual</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/config/shared</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/config/xml</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/nteventlog</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (external)</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/servlet</td>
+      <td width="26%">Yes</td>
+      <td width="26%">Yes (Goanna required)</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/socket/client</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (EiffelNet)</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="48%">examples/socket/server</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (EiffelNet)</td>
+    </tr>
+    <tr bgcolor="white">
+      <td width="48%">examples/vision</td>
+      <td width="26%">Yes</td>
+      <td width="26%" bgcolor="#FFCC00">No (Vision2)</td>
+    </tr>
+  </table>
+</div>
+<p class="indentp">&nbsp;</p>
+</body>
+</html>

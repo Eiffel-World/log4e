@@ -1,0 +1,581 @@
+<html>
+<head>
+<title>Goanna Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="style/site.css" type="text/css">
+</head>
+
+<body bgcolor="#FFcc99" text="#000000">
+<p><img src="images/headings_r25_c22.gif" width="160" height="48"></p>
+<p>This page provides a general overview of the Log4E library and its usage. An 
+  <a href="installation.htm">Installation</a> page and a set of <a href="compilation.htm">compilation 
+  notes</a> are also available. Full class interfaces and relationships are available 
+  in the <a href="classes/l4e_log4e/index.html">class documentation</a>.</p>
+<p>The following table lists the clusters provided with the Goanna Log4E library.</p>
+<div class="indentp"> 
+  <table border="0" class="p">
+    <tr bgcolor="lightgrey" align="center"> 
+      <td align="left"><b>Library Cluster</b></td>
+      <td><b>Description</b></td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library</td>
+      <td>Core classes for the library including the logger hierarchy, logger, 
+        priority and abstract classes for filters, appenders, and layouts.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/appenders</td>
+      <td>Commonly used appenders such as file appenders, stdout and stderr appenders, 
+        and simple rolling file appenders.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/appenders/net</td>
+      <td>A socket appender, syslog appender and an externally rolled appender 
+        (which can be rolled by connecting on a socket).</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/appenders/nt</td>
+      <td>NT Event log appender.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/config</td>
+      <td>XML configuration parser and support classes.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/filters</td>
+      <td>Log event filters including string match, priority match and priority 
+        range. </td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/helpers</td>
+      <td>Classes used internally by Log4E including an internal log.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/layouts</td>
+      <td>Log event layout classes including a simple layout, time layout, date 
+        time layout and configurable pattern layout.</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td>library/layouts/pattern</td>
+      <td>Supporting classes for the pattern layout.</td>
+    </tr>
+  </table>
+</div>
+<p>The Jakarta Log4j library is highly regarded as one of the most comprehensive 
+  and useful logging frameworks available for Java. Its flexibility and extensibility 
+  make it one of the recommended third party libraries for any Java development 
+  that has logging requirements. </p>
+<p>Log4E is an attempt to provide the same capabilities for Eiffel applications 
+  and to provide a readily available logging framework for Eiffel developers. 
+  It was originally developed as an integral component of the Goanna library but 
+  has since been converted to a standalone library because of its general usefulness 
+  to the Eiffel community.</p>
+<p><img src="images/headings-2_r2_c2.gif" width="177" height="49"></p>
+<p>The logging framework is managed by a log hierarchy represented by the class 
+  <span class="code"><a href="classes/l4e_log4e/l4e_hierarchy_short.html">L4E_HIERARCHY</a></span>. 
+  Instances of this class can be used to manage a hierarchy of loggers (<span class="code"><a href="classes/l4e_log4e/l4e_logger_short.html">L4E_LOGGER</a></span>), 
+  each of which can process logging events differently. The hierarchy is arranged 
+  using a naming convention that separates parents from children using a full 
+  stop. For example, a logger with the name &quot;a.b&quot; is actually a child 
+  of a logger with the name &quot;a&quot;. The hierarchy can be arranged in any 
+  configuration you require for an application. A hierarchy might represent different 
+  classes within your application with the parents mirroring the clusters that 
+  the classes are contained within. In the Java world, a Log4j hierarchy typically 
+  follows a package/class structure.</p>
+<p>Each logger in the hierarchy is given a priority (<span class="code"><a href="classes/l4e_log4e/l4e_priority_short.html">L4E_PRIORITY</a></span>) 
+  which represents the level of log events that will be processed by the logger. 
+  The event priorities supported by Log4E include: <span class="code">FATAL</span>, 
+  <span class="code">ERROR</span>, <span class="code">WARN</span>, <span class="code">INFO</span>, 
+  and <span class="code">DEBUG</span> each of which are defined in the class <a href="classes/l4e_log4e/l4e_priority_constants_short.html"><span class="code">L4E_PRIORITY_CONSTANTS</span></a>. 
+  The priority determines if a log event will be processed or ignored. Each log 
+  event (<span class="code"><a href="classes/l4e_log4e/l4e_event_short.html">L4E_EVENT</a></span>) 
+  is raised with a particular priority and as it progresses through the logging 
+  hierarchy, each logger can determine if it should process the event by comparing 
+  its priority with the priority of the event. If the event priority is greater 
+  or equal to the logger priority then it will be processed.</p>
+<p>At the top of the logging hierarchy is the root logger. This logger is predefined 
+  and cannot be removed or replaced. You can retrieve the root logger, perhaps 
+  to attach an appender, through the feature <span class="code"><a href="classes/l4e_log4e/l4e_hierarchy_short.html#f_root">root</a></span> 
+  of class <span class="code"><a href="classes/l4e_log4e/l4e_hierarchy_short.html">L4E_HIERARCHY</a></span>. 
+  All loggers that you create become decendants of the root logger.</p>
+<p>Priorities are inherited by children in the log hierarchy. Thus if the root 
+  logger is given the priority <span class="code">INFO</span> then all descendant 
+  loggers (that don't define their own priority) will use the root priority. Similarly, 
+  the children of a logger lower down in the hierarchy, that does define its own 
+  priority, will inherit the priority of its parent. The following table illustrates 
+  the inheritance of logging priorities.</p>
+<table border="0" class="p" width="77%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="21%"><b>Logger</b></td>
+    <td width="20%"><b>Assigned Priority</b></td>
+    <td width="24%"><b>Inherited Priority</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">root</td>
+    <td width="20%">INFO</td>
+    <td width="24%">N/A</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x</td>
+    <td width="20%">none</td>
+    <td width="24%">INFO</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x.y</td>
+    <td width="20%">DEBUG</td>
+    <td width="24%">N/A</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x.y.z</td>
+    <td width="20%">none</td>
+    <td width="24%">DEBUG</td>
+  </tr>
+</table>
+<p>The logger <span class="code">x</span> inherits the priority of the root logger 
+  while logger <span class="code">x.y</span> defines its own. Finally, logger 
+  <span class="code">x.y.z</span> inherits the priority <span class="code">DEBUG</span> 
+  from its immediate parent logger <span class="code">x.y</span>.</p>
+<p>Apart from the root logger, all loggers are created on the fly (including any 
+  intermediate parents) when they are first requested. For example, given the 
+  following attribute declarations:</p>
+<p class="indentcode">hierarchy: L4E_HIERARCHY<br>
+  logger: L4E_LOGGER</p>
+<p>The following code fragment assigns a logger named x.y to the <span class="code">logger</span> 
+  attribute:</p>
+<p class="indentcode">logger := hierarchy.logger (&quot;x.y&quot;)</p>
+<p>If a logger named <span class="code">x.y</span> does not already exist then 
+  the hierarchy will create it. The hierarchy also checks to see if appropriate 
+  parent loggers exist and creates them if they don't. In this case, a logger 
+  named <span class="code">x</span> will be created.</p>
+<p>The class <a href="classes/l4e_log4e/l4e_hierarchy_short.html" class="code">L4E_HIERARCHY</a> 
+  also provides features for disabling particular event priorities at a global 
+  level and accessing the full hierarchy of loggers. See the <a href="classes/l4e_log4e/l4e_hierarchy_flatshort.html">flat 
+  class interface</a> for more details.</p>
+<p><img src="images/headings-2_r2_c3.gif" width="112" height="49"></p>
+<p>Processing a log event involves passing the event on to a log appender, represented 
+  by the deferred class <a href="classes/l4e_log4e/l4e_appender_short.html"><span class="code">L4E_APPENDER</span></a>. 
+  Descendants of this class implement different types of processing for events 
+  such as writing to a file, sending across a socket, and anything else you could 
+  imagine doing to an event! A logger is not restricted to one appender, in fact, 
+  there are no limitations. If one particular logger needs to process events in 
+  a number of ways, then it can attach more than one appender to itself. For example, 
+  an application may require an audit log that writes all login attempts to a 
+  file and also to a database. Two separate appenders can be attached to the audit 
+  logger so that each event is processed by both.</p>
+<p>A log event is handled by the logger in which it was generated and then by 
+  that logger's parent and so on until, finally, it is handled by the root logger. 
+  The propagation through the parents is governed by the value of the <span class="code">additive</span> 
+  flag in each logger. If a logger is set to additive then an event will be handled 
+  and then passed to its parent. To illustrate this capability, the following 
+  table shows a set of loggers with different additive values and shows which 
+  appenders will receive a log event at each level of the heirarchy.</p>
+<table border="0" class="p" width="77%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="21%"><b>Logger</b></td>
+    <td width="20%"><b>Appenders</b></td>
+    <td width="24%"><b>Additive?</b></td>
+    <td width="35%"><b>Event Handling</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">root</td>
+    <td width="20%">A1</td>
+    <td width="24%">N/A</td>
+    <td width="35%">A1</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x</td>
+    <td width="20%">X1, X2</td>
+    <td width="24%">Yes</td>
+    <td width="35%">X1, X2, A1</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x.y</td>
+    <td width="20%">none</td>
+    <td width="24%">Yes</td>
+    <td width="35%">X1, X2, A1</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">x.y.z</td>
+    <td width="20%">Z1</td>
+    <td width="24%">Yes</td>
+    <td width="35%">Z1, X1, X2, A1</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">audit</td>
+    <td width="20%">AUDIT1</td>
+    <td width="24%">No</td>
+    <td width="35%">AUDIT1</td>
+  </tr>
+  <tr bgcolor="white">
+    <td width="21%">audit.login</td>
+    <td width="20%">none</td>
+    <td width="24%">Yes</td>
+    <td width="35%">AUDIT1</td>
+  </tr>
+</table>
+<p>The logger <span class="code">audit</span> is the only one with <span class="code">additive</span> 
+  set to <span class="code">False</span>. In this case, events originating in 
+  <span class="code">audit</span> and <span class="code">audit.login</span> are 
+  only sent to the appender named <span class="code">AUDIT1</span>. The loggers 
+  <span class="code">x</span>, <span class="code">x.y</span> and <span class="code">x.y.z</span> 
+  all pass events to their parents for handling. The additive flag can be set 
+  by calling the routine <span class="code"><a href="classes/l4e_log4e/l4e_logger_short.html#f_set_additive">set_additive</a></span> 
+  on class <span class="code"><a href="classes/l4e_log4e/l4e_logger_short.html">L4E_LOGGER</a></span>.</p>
+<p>The Log4E library includes a number of appenders that provide the most common 
+  logging required by an application such as writing to a file. Additional appenders 
+  are also available that can write events to sockets, Unix syslog and the NT 
+  event log and you can implement your own custom appenders easily. The following 
+  table describes each of the appenders available in the standard Log4E library.</p>
+<table border="0" class="p" width="90%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="39%"><b>Appender Class</b></td>
+    <td width="61%"><b>Description</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_file_appender_short.html">L4E_FILE_APPENDER</a></td>
+    <td width="61%">Writes events to a file. The file can either be appended to 
+      or overwritten each time an application starts.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_stdout_appender_short.html">L4E_STDOUT_APPENDER</a></td>
+    <td width="61%">Writes events to standard output.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_stderr_appender_short.html">L4E_STDERR_APPENDER</a></td>
+    <td width="61%">Writes events to standard error.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_rolling_file_appender_short.html">L4E_ROLLING_FILE_APPENDER</a></td>
+    <td width="61%">Writes events to a file that will be &quot;rolled over&quot; 
+      when it reaches a certain size. When the file is rolled over a new file 
+      is created and a specified number of old files are retained.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_calendar_rolling_appender_short.html">L4E_CALENDAR_ROLLING_APPENDER</a></td>
+    <td width="61%">Writes events to a file that is rolled every minute, hour 
+      or day. A specified number of rolled files are retained.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_net/l4e_socket_appender_short.html">L4E_SOCKET_APPENDER</a></td>
+    <td width="61%">Writes log events (in the form of a L4E_STORABLE_EVENT) to 
+      a specified host and TCP port. A server listening on the socket can read 
+      the event and process them as needed.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html">L4E_SYSLOG_APPENDER</a></td>
+    <td width="61%">Writes log events to a Unix syslog at a specified host and 
+      UDP port. The event is written with a to a specified &quot;facility&quot;.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_net/l4e_externally_rolled_file_appender_short.html">L4E_EXTERNALLY_ROLLED 
+      _FILE_APPENDER</a></td>
+    <td width="61%">Writes logs to a file which can be rolled by connecting to 
+      a configurable socket. This appender uses a threaded class that performs 
+      the socket listen and notifies the appender to roll whenever a connection 
+      is made to the socket.</td>
+  </tr>
+  <tr bgcolor="white">
+    <td width="39%"><a href="classes/l4e_log4e/l4e_appenders/l4e_nt/l4e_nt_event_log_appender_short.html">L4E_NT_EVENT_LOG_APPENDER</a></td>
+    <td width="61%">Writes log events to the NT Event Log using a specified application 
+      name. Appropriate registry entries are created, if neede,d for the appender 
+      to function correctly. The DLL NTEventLogAppender.dll must be on the path 
+      for this appender to function correctly.</td>
+  </tr>
+</table>
+<p><img src="images/headings-2_r3_c4.gif" width="92" height="47"></p>
+<p>When a log event is processed by an appender it can be formatted using a layout 
+  (<span class="code"><a href="classes/l4e_log4e/l4e_layout_short.html">L4E_LAYOUT</a></span>) 
+  which provides the mechanism to convert the event into a formatted representation. 
+  The default layout for newly created (file) appenders is the <span class="code"><a href="classes/l4e_log4e/l4e_layouts/l4e_simple_layout_short.html">L4E_SIMPLE_LAYOUT</a></span> 
+  which formats an event using the priority and log message separated by a hyphen 
+  character. The layout classes available in Log4E are listed in the following 
+  table.</p>
+<table border="0" class="p" width="90%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="39%"><b>Layout Class</b></td>
+    <td width="61%"><b>Description</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_layouts/l4e_simple_layout_short.html" class="code">L4E_SIMPLE_LAYOUT</a></td>
+    <td width="61%">Formats an event as: &lt;priority&gt; &quot;-&quot; &lt;message&gt;. 
+      Where &lt;priority&gt; is the event priority string and &lt;message&gt; 
+      is the log message sent with the event.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_layouts/l4e_time_layout_short.html" class="code">L4E_TIME_LAYOUT</a></td>
+    <td width="61%">Formats an event as: &lt;seconds&gt; &quot;-&quot; &lt;priority&gt; 
+      &quot;-&quot; &lt;message&gt;. Where &lt;seconds&gt; is the number of seconds 
+      elapsed since the application started.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="39%"><a href="classes/l4e_log4e/l4e_layouts/l4e_date_time_layout_short.html" class="code">L4E_DATE_TIME_LAYOUT</a></td>
+    <td width="61%">Formats an event as: &lt;timestamp&gt; &quot;-&quot; &lt;priority&gt; 
+      &quot;-&quot; &lt;message&gt;. Where &lt;timestamp&gt; is a detailed date 
+      time of the form &quot;YYYY/MM/DD HH:MM:SS&quot;.</td>
+  </tr>
+  <tr bgcolor="white">
+    <td width="39%"><a href="classes/l4e_log4e/l4e_layouts/l4e_pattern_layout_short.html" class="code">L4E_PATTERN_LAYOUT</a></td>
+    <td width="61%">Formats an event using a customisable pattern. See below for 
+      more detail.</td>
+  </tr>
+</table>
+<p>A layout can be registered with an appender by creating an instance of a pattern 
+  class and passing it with a <span class="code"><a href="classes/l4e_log4e/l4e_appender_short.html#f_set_layout">set_layout</a></span> 
+  call.</p>
+<p>The pattern layout class provides a flexible way of creating custom layouts 
+  using a <span class="code">printf</span> like conversion pattern. The pattern 
+  string consists of plain text interspersed with escape sequences that will be 
+  substituted with event information. Each escape sequence consists of the character 
+  '@' followed by a predefined character that represents the information that 
+  will be substituted. The following table lists the escape sequences supported 
+  by the pattern layout.</p>
+<table border="0" class="p" width="80%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="21%"><b>Escape Sequence</b></td>
+    <td width="79%"><b>Result</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">@@</td>
+    <td width="79%">Insert the literal character '@'</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">@c</td>
+    <td width="79%">Insert the name of the logger that raised the event. </td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">@d</td>
+    <td width="79%">Insert the event date and time</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">@m</td>
+    <td width="79%">Insert the event message</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%">@r</td>
+    <td width="79%">Insert a date and time relative to the start of execution</td>
+  </tr>
+  <tr bgcolor="white">
+    <td width="21%">@p</td>
+    <td width="79%">Insert the event priority</td>
+  </tr>
+</table>
+<p>Any other text not preceded by an '@' character is inserted as is. If any other 
+  character follows an '@' sign then an error will be raised. You can further 
+  modify the output of each escape sequence by adding format modifiers between 
+  the '@' sign and the specifier character. The next table shows the types of 
+  format modifiers you can use.</p>
+<table border="0" class="p" width="98%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="10%"><b>Escape Sequence</b></td>
+    <td width="13%"> 
+      <div align="center"><b>Left Justify</b></div>
+    </td>
+    <td width="13%"> 
+      <div align="center"><b>Minimum Width</b></div>
+    </td>
+    <td width="14%"> 
+      <div align="center"><b>Maximum Width</b></div>
+    </td>
+    <td width="50%"><b>Description</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="10%">@20c</td>
+    <td width="13%"> 
+      <div align="center">False</div>
+    </td>
+    <td width="13%"> 
+      <div align="center">20</div>
+    </td>
+    <td width="14%"> 
+      <div align="center">none</div>
+    </td>
+    <td width="50%">Set the minimum length to 20 characters and right justify. 
+      Left pad with spaces if the logger name is less than 20 characters in length.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="10%">@-20c</td>
+    <td width="13%"> 
+      <div align="center">True</div>
+    </td>
+    <td width="13%"> 
+      <div align="center">20</div>
+    </td>
+    <td width="14%"> 
+      <div align="center">none</div>
+    </td>
+    <td width="50%">Set the minimum length to 20 characters and left justify. 
+      Right pad with spaces if the logger name is less than 20 characters in length.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="10%">@.30c</td>
+    <td width="13%"> 
+      <div align="center">N/A</div>
+    </td>
+    <td width="13%"> 
+      <div align="center">none</div>
+    </td>
+    <td width="14%"> 
+      <div align="center">30</div>
+    </td>
+    <td width="50%">Set the maximum length to 30 characters. Truncates from the 
+      beginning if the logger name is longer than 30 characters.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="10%">@20.30c</td>
+    <td width="13%"> 
+      <div align="center">False</div>
+    </td>
+    <td width="13%"> 
+      <div align="center">20</div>
+    </td>
+    <td width="14%"> 
+      <div align="center">30</div>
+    </td>
+    <td width="50%">Set the minimum length to 20 and the maximum length to 30 
+      and right justify. Left pad if the logger name is shorter than 20 characters 
+      or truncate if it is longer than 30 characters.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="10%">@-20.30c</td>
+    <td width="13%"> 
+      <div align="center">True</div>
+    </td>
+    <td width="13%"> 
+      <div align="center">20</div>
+    </td>
+    <td width="14%"> 
+      <div align="center">30</div>
+    </td>
+    <td width="50%">Set the minimum length to 20 and the maximum length to 30 
+      and left justify. Right pad if the logger name is short than 20 characters 
+      or truncate if it is longer than 30 characters.</td>
+  </tr>
+</table>
+<p>The following convertion pattern:</p>
+<p class="indentcode">@d [@6p] @c - @m%N</p>
+<p>Will result in log events formatted with a date, space character , left square 
+  bracket, priority (left justified in a 6 character string), right square bracket, 
+  space character, the logger name, another space, the message, and finally, a 
+  newline character (which in Eiffel is converted to an appropriate <span class="code">%R%N</span> 
+  pair if required by the operating system). Therefore, a log event sent to a 
+  logger named audit, with the priority <span class="code">INFO</span> and with 
+  the message &quot;glennm successfully logged in&quot;, would result in the formatted 
+  string:</p>
+<p class="indentcode">2002/06/30 12:30:00 [INFO ] audit - glennm successfully 
+  logged in</p>
+<p><img src="images/headings-2_r3_c5.gif" width="83" height="44"></p>
+<p>Each appender can have a series of filters (<a href="classes/l4e_log4e/l4e_filter_short.html" class="code">L4E_FILTER</a>) 
+  that can reject log events based on configurable criteria. Filters are added 
+  to an appender by calling <a href="classes/l4e_log4e/l4e_appender_short.html#f_add_filter">add_filter</a> 
+  and they are invoked in the order that they were added. A filter can either 
+  accept a log event for processing, reject the event, or indicate that it does 
+  not care (neutral) and pass the event to the next filter to decide.</p>
+<p>The filters available in Log4E are listed in the following table.</p>
+<table border="0" width="80%">
+  <tr bgcolor="lightgrey" align="center"> 
+    <td align="left" width="21%"><b>Filter Class</b></td>
+    <td width="79%"><b>Description</b></td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%" class="code"><a href="classes/l4e_log4e/l4e_filters/l4e_priority_match_filter_short.html">L4E_PRIORITY_MATCH_FILTER</a></td>
+    <td width="79%">Examines the log event priority and depending on the <span class="code">match_on_filter</span> 
+      flag either accepts or rejects the event. If the priority does not match 
+      then the filter is neutral.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%" class="code"><a href="classes/l4e_log4e/l4e_filters/l4e_priority_range_filter_short.html">L4E_PRIORITY_RANCH_FILTER</a></td>
+    <td width="79%">If the priority is outside the range (inclusive) then <span class="code">Filter_reject</span> 
+      is returned. If the priority is within the range and <span class="code">match_on_filter</span> 
+      is <span class="code">True</span> then <span class="code">Filter_accept</span> 
+      is returned. If the priority is within the range and <span class="code">match_on_filter</span> 
+      if <span class="code">False</span> then <span class="code">Filter_neutral</span> 
+      is returned.</td>
+  </tr>
+  <tr bgcolor="white"> 
+    <td width="21%" class="code"><a href="classes/l4e_log4e/l4e_filters/l4e_string_match_filter_short.html">L4E_STRING_MATCH_FILTER</a></td>
+    <td width="79%">The decision is <span class="code">Filter_accept</span> if 
+      the string is found and <span class="code">match_on_filter</span> is <span class="code">True</span>. 
+      If a match is found and <span class="code">match_on_filter</span> is <span class="code">False</span> 
+      then <span class="code">Filter_reject</span> is returned. If no match is 
+      found then <span class="code">Filter_neutral</span> is returned.</td>
+  </tr>
+</table>
+<p><img src="images/headings-2_r5_c2.gif" width="138" height="48"></p>
+<p>There are two ways of configuring the Log4E library; programatically or via 
+  an XML configuration file. The programmatic approach involves using Eiffel code 
+  to create and setup loggers and appenders. Typically this would be done at the 
+  earliest point in the application, such as the creation procedure of the root 
+  class. The following routine shows an example configuration routine:</p>
+<pre>
+configure_logger is
+		-- Setup the Log4E loggers and appenders
+	local
+		h: L4E_HIERARCHY
+		l: L4E_LOGGER
+		a: L4E_APPENDER
+		p: L4E_PATTERN_LAYOUT
+	do
+		-- create the hierarchy with a priority of INFO
+		create h.make (Info_p)
+		-- create a logger named &quot;audit&quot;
+		l := h.logger (&quot;audit&quot;)
+		-- create a file appender that will write to a file named
+		-- &quot;app.log&quot; and appends if the file already exists
+		create {L4E_FILE_APPENDER} a.make (&quot;app.log, True)
+		-- Register the appender with the &quot;audit&quot; logger
+		l.add_appender (a)
+		-- create a pattern layout and register it with the appender
+		create p.make (&quot;@d [@6p] @c - @m%N&quot;)
+		a.set_layout (p)
+	end
+</pre>
+<p>For more information on configuring Log4E programatically see the examples 
+  located in <span class="code">$LOG4E/examples/config</span>.</p>
+<p>The entire logging framework can also be configured using XML. A sample XML 
+  configuration file follows:</p>
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;config xmlns="http://goanna.info/spec/log4e"&gt;
+	&lt;!-- create file appender to log to app.log --&gt;
+	&lt;appender name="file" type="file"&gt;
+		&lt;param name="filename" value="app.log"/&gt;
+		&lt;param name="append" value="true"/&gt;
+		&lt;layout type="pattern"&gt;
+			&lt;param name="pattern" value="@d [@-6p] @c - @m&amp;#010;"/&gt;
+		&lt;/layout&gt;
+	&lt;/appender&gt;
+	&lt;!-- configure logger 'audit' --&gt;
+	&lt;logger name="audit"/&gt;
+	&lt;!-- configure the root category for info events and to log
+		to the appender 'file' --&gt;
+	&lt;root priority="info"&gt;
+		&lt;appender-ref ref="file"/&gt;
+	&lt;/root&gt;
+&lt;/config&gt;
+</pre>
+<p>More extensive configuration elements are available. Again browse the examples 
+  for more details.</p>
+<p><img src="images/headings-2_r5_c3.gif" width="104" height="48"></p>
+<p>The example located in <span class="code">$LOG4E/examples/vision</span> implements 
+  a graphical log event processor which listens for events sent via a socket using 
+  a socket appender. You can compile this example as you would any of the others, 
+  the only additional requirement is that the EiffelVision2 library from Eiffel 
+  Software Inc. must be available.</p>
+<p>Once the example is compiled, start it by specifying a port number on the command 
+  line. For example:</p>
+<p class="indentcode">logvision 9000</p>
+<p>will start the application so that it listens on port 9000 for log events. 
+  The main window will appear and the application will site quietly waiting for 
+  events.</p>
+<p>To send log events to <span class="code">logvision</span> you need to add a 
+  socket appender (<span class="code"><a href="classes/l4e_log4e/l4e_appenders/l4e_net/l4e_socket_appender_short.html">L4E_SOCKET_APPENDER</a></span>) 
+  to your application and specify the host and port that <span class="code">logvision</span> 
+  is listening on. The example found in <span class="code">$LOG4E/examples/socket/client</span> 
+  is a good starting point.</p>
+<p>You can filter incoming events by priority, logger name or message. The events 
+  received by <span class="code">logvision</span> can also be exported to a file 
+  using the layout of the original event. The main window of <span class="code">logvision</span> 
+  is shown next.</p>
+<p align="left"><a href="images/logvision.gif" target="_blank"><img src="images/logvision-thumb.gif" width="350" height="175" border="0"></a></p>
+</body>
+</html>

@@ -89,7 +89,7 @@ feature {NONE} -- Implementation
 			logger := Log_hierarchy.logger ("test")
 			create {L4E_SOCKET_APPENDER} appender.make ("socket", host, port)
 			logger.add_appender (appender)
-			create {L4E_PATTERN_LAYOUT} layout.make ("&d [&-6p] &c - &m%N")
+			create {L4E_PATTERN_LAYOUT} layout.make ("@d [@-6p] @c - @m%N")
 			appender.set_layout (layout)
 
 		end

@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Goanna Installation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="style/site.css" type="text/css">
+</head>
+
+<body bgcolor="#FFcc99" text="#000000">
+<p><img src="images/headings_r11_c4.gif" width="118" height="43"></p>
+<p class="indentp">This document describes how to install and build the Goanna 
+  Log4E examples.</p>
+<p class="indentp">You can install Goanna Log4E using a pre-packaged tar file 
+  or by checking out the latest source from its CVS repository at SourceForge.</p>
+<p class="indentp">A pre-packaged installation will normally give you a more stable 
+  version than a checkout from CVS. Tar files are created at every major milestone 
+  of the project and represent a tested release.</p>
+<p class="indentp">Pre-packaged tar files are available from SourceForge in the 
+  <a href="downloads.htm">Downloads</a> section. Download the latest tar file 
+  from here and extract into a directory of your choice.</p>
+<p class="indentp">If you wish to use the latest source from CVS follow the instructions 
+  on the <a href="http://sourceforge.net/cvs/?group_id=14711" target="_top">Project 
+  Goanna CVS</a> page for Anonymous CVS Access.</p>
+<p class="indentp">Due to a few limitations of CVS, and a major restructuring 
+  of the source tree, you may end up with a number of empty directories when you 
+  checkout the source. If you execute: </p>
+<p class="indentcode">cvs update -Pd</p>
+<p class="indentp">these directories will be removed. You can also add the <span class="code">-P</span> 
+  option to the initial checkout command.</p>
+<p class="indentp">Once installed, create an environment variable named <span class="code">LOG4E</span> 
+  that points to the root directory of the installation.<br>
+</p>
+<p class="indentp">The Goanna Log4E source tree contains the following top level 
+  directories:</p>
+<ul class="indentp">
+  <li> doc - documentation (including this file)</li>
+  <li>library - library class texts</li>
+  <li>examples - example applications and test harnesses for the library</li>
+  <li>misc - miscellaneous build files and utilities</li>
+  <li>test - test harnesses</li>
+</ul>
+<p><img src="images/headings_r6_c18.gif" width="195" height="42"><br>
+</p>
+<p class="indentp">Installation of Goanna Log4E requires a number of third party 
+  Eiffel libraries to be installed and built. Each distinct library is reverenced 
+  using an environment variable that points to the<br>
+  top level directory of the library.</p>
+<p class="indentp">The following table lists the third-party libraries used by 
+  Goanna Log4E</p>
+<div class="indentp">
+  <table width="90%" border="0" class="p">
+    <tr bgcolor="lightgrey" align="left"> 
+      <td width="9%"><b>Library</b></td>
+      <td width="16%"><b>Version</b></td>
+      <td width="31%"><b>Authors</b></td>
+      <td width="31%"><b>Description</b></td>
+      <td width="13%"><b>Variable</b></td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="9%"><a href="http://www.gobosoft.com" target="_top">gobo</a></td>
+      <td width="16%">CVS version</td>
+      <td width="31%">Eric Bezault</td>
+      <td width="31%">Portable Eiffel libraries and tools.</td>
+      <td width="13%">GOBO</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="9%"><a href="http://sourceforge.net/projects/yaesockets" target="_top">yaesockets</a></td>
+      <td width="16%">UDP_SUPPORT_ COMPILES- 2001-05-23b </td>
+      <td width="31%">Marcio Marchini and Andreas Scholz</td>
+      <td width="31%">Optional. Portable Eiffel sockets library used for externally 
+        rolled log files.</td>
+      <td width="13%">YAESOCKETS</td>
+    </tr>
+    <tr bgcolor="white"> 
+      <td width="9%">EiffelNet</td>
+      <td width="16%">EiffelStudio 5.1</td>
+      <td width="31%">Eiffel Software Inc. (aka ISE)</td>
+      <td width="31%">Optional. Used for socket examples and the logvision application</td>
+      <td width="13%">N/A</td>
+    </tr>
+    <tr bgcolor="white">
+      <td width="9%">EiffelVision2</td>
+      <td width="16%">EiffelStudio 5.1</td>
+      <td width="31%">Eiffel Software Inc.</td>
+      <td width="31%">Optional. Used for the logvision applicaiton</td>
+      <td width="13%">N/A</td>
+    </tr>
+  </table>
+  <p>It is important to have a recent version of the GOBO libraries. Log4E has 
+    been developed using the unreleased CVS version of GOBO to make use of the 
+    new GOBO XML parser and GOBO tools. Unfortunately a public release of the 
+    GOBO libraries has not yet been made. It is coming soon! </p>
+  <p>The NT event log appender requires a C library that encapsulates the Win32 
+    event logging functions. This library will need to be compiled using a C compiler 
+    before attempting to compile and use an NT event log appender. A batch file 
+    is provided in the library folder (<span class="code">library/appenders/nt/lib</span>) 
+    that can be used to perform the compilation. once compiled you must make sure 
+    the created DLL is available on the path by either copying it to an appropriate 
+    folder or adding the <span class="code">lib</span> folder to your path.</p>
+</div>
+<p class="indentp">To compile all of the examples you can use the GOBO geant tool 
+  and run <span class="code">geant compile</span> at the top level of the installation. 
+  Each example can also be compiled individually by changing to the appropriate 
+  folder and running <span class="code">geant compile</span>.</p>
+<p class="indentp">Ace files for each Eiffel compiler are also provided so that 
+  you can compile by hand. You may need to tweak the Ace files before compilation 
+  to match your environment.</p>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Logging appender that writes to Unix syslog via a UDP socket.">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_SHARED_HIERARCHY Flat contracts</TITLE>
+<LINK REL="stylesheet" HREF="../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_shared_hierarchy_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_shared_hierarchy_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_SHARED_HIERARCHY"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Logging appender that writes to Unix syslog via a UDP socket."</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html">L4E_SHARED_HIERARCHY</A>
+
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Access</SPAN>
+
+	<A NAME="f_log_hierarchy"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_log_hierarchy">log_hierarchy</A><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_hierarchy_flatshort.html">L4E_HIERARCHY</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Shared logging hierarchy.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will have Debug logging priority by default.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> NOTE: No appenders will be created in this hierarchy.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> You will need to create and set appenders before log messages</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> will appear.</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Logging</SPAN>
+
+	<A NAME="f_debugging"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_debugging">debugging</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the priority Debug</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> on the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_error"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_error">error</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the priority Error</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> on the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_fatal"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_fatal">fatal</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the priority Fatal</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> on the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_info"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_info">info</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the priority Info</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> on the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_log"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_log">log</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">event_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_priority_flatshort.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the given 'event_priority' on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">event_priority_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_warn"><A CLASS="efeature" HREF="../l4e_log4e/l4e_shared_hierarchy_flatshort.html#f_warn">warn</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">logger</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a 'message' object with the priority Warn</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> on the named 'logger'.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Will create the logger if it does not already</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> exist.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">logger_name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">logger</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">invariant</SPAN>
+
+		<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ANY</SPAN>
+	<SPAN CLASS="etag">reflexive_equality</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">standard_is_equal</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+	<SPAN CLASS="etag">reflexive_conformance</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">conforms_to</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_SHARED_HIERARCHY<FORM ONSUBMIT="go_to('../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_shared_hierarchy_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_shared_hierarchy_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_SHARED_HIERARCHY"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

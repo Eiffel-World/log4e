@@ -1,0 +1,214 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Logging logger.">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_LOGGER Contracts</TITLE>
+<LINK REL="stylesheet" HREF="../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_logger_links.html">Relations</A></TD>
+<TD CLASS="nolink2">Contracts</TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_logger_flatshort.html">Flat contracts</A></TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_LOGGER"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Logging logger."</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../l4e_log4e/l4e_logger_short.html">L4E_LOGGER</A>
+
+<SPAN CLASS="ekeyword">create</SPAN> 
+	<A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_make">make</A>
+
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status Report</SPAN>
+
+	<A NAME="f_name"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_name">name</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Name of this logger</SPAN>
+
+	<A NAME="f_priority"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_priority">priority</A><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_priority_short.html">L4E_PRIORITY</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Starting from this caregory, search the logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> hieararchy for a non-null priority and return it.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Otherwise, return the priority of the root logger.</SPAN>
+</A>
+	<A NAME="f_parent"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_parent">parent</A><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_logger_short.html">L4E_LOGGER</A></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> The parent of this logger.</SPAN>
+
+	<A NAME="f_context"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_context">context</A><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_hierarchy_short.html">L4E_HIERARCHY</A></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> The hierarchy in which this logger operates.</SPAN>
+
+	<A NAME="f_is_additive"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_is_additive">is_additive</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Should appenders of this logger's parent be used?</SPAN>
+
+	<A NAME="f_is_priority_set"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_is_priority_set">is_priority_set</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Does this logger have a priority set? False if the priority</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> will be inherited from an ancestor.</SPAN>
+</A>
+	<A NAME="f_appenders"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_appenders">appenders</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">DS_LINKED_LIST</SPAN> <SPAN CLASS="esymbol">[</SPAN><A CLASS="eclass" HREF="../l4e_log4e/l4e_appender_short.html">L4E_APPENDER</A><SPAN CLASS="esymbol">]</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Appenders for this logger.</SPAN>
+
+	<A NAME="f_is_enabled_for"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_is_enabled_for">is_enabled_for</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">check_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_priority_short.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Is this logger enabled for 'check_priority'?</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">check_priority_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">check_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN>
+			<SPAN CLASS="etag">true_if_priority_enabled</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="esymbol">=</SPAN> <SPAN CLASS="esymbol">(</SPAN><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_context">context</A><SPAN CLASS="edot">.</SPAN><A CLASS="efeature" HREF="../l4e_log4e/l4e_hierarchy_short.html#f_disabled">disabled</A> <SPAN CLASS="esymbol">&lt;</SPAN> <SPAN CLASS="elocal">check_priority</SPAN><SPAN CLASS="edot">.</SPAN><A CLASS="efeature" HREF="../l4e_log4e/l4e_priority_short.html#f_level">level</A> <SPAN CLASS="ekeyword">and</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_priority">priority</A> <SPAN CLASS="esymbol">&lt;=</SPAN> <SPAN CLASS="elocal">check_priority</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status Setting</SPAN>
+
+	<A NAME="f_set_priority"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_set_priority">set_priority</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_priority_short.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Set the priority for this logger. Pass Void to unset the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> priority and use an ancestor's.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">priority_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_add_appender"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_add_appender">add_appender</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_appender</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_appender_short.html">L4E_APPENDER</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Add 'new_appender' to the list of</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> appenders for this logger.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">new_appender_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_appender</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">not_added</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_appenders">appenders</A><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">has</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_appender</SPAN><SPAN CLASS="esymbol">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN>
+			<SPAN CLASS="etag">appender_added</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_appenders">appenders</A><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">has</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_appender</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>
+	<A NAME="f_remove_appender"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_remove_appender">remove_appender</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">appender_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Remove appender with name 'appender_name'</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Iterates to find matching appender.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">appender_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_call_appenders"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_call_appenders">call_appenders</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">event</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_event_short.html">L4E_EVENT</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Send 'event' to all appenders of this</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> logger and recursively parents appenders if</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> additive.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">event_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_close_appenders"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_close_appenders">close_appenders</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Close all appenders</SPAN>
+</A>
+	<A NAME="f_set_additive"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_set_additive">set_additive</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">flag</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Set additive status to 'flag'.</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Logging</SPAN>
+
+	<A NAME="f_debugging"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_debugging">debugging</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a message object with the priority Debug.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> First checks if this logger is enabled</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> by comparing the priority of this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with the Debug priority. If this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> is debug enabled, then it converts the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> message object to a string by invoking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> 'out'. It then proceeds to call all the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> registered appenders in this logger and</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> also higher in the hierarchy depending on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the value of the additivity flag.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_warn"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_warn">warn</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a message object with the priority Warn.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> First checks if this logger is enabled</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> by comparing the priority of this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with the Warn priority. If this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> is warn enabled, then it converts the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> message object to a string by invoking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> 'out'. It then proceeds to call all the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> registered appenders in this logger and</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> also higher in the hierarchy depending on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the value of the additivity flag.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_info"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_info">info</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a message object with the priority Info.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> First checks if this logger is enabled</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> by comparing the priority of this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with the Info priority. If this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> is info enabled, then it converts the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> message object to a string by invoking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> 'out'. It then proceeds to call all the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> registered appenders in this logger and</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> also higher in the hierarchy depending on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the value of the additivity flag.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_error"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_error">error</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a message object with the priority Error.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> First checks if this logger is enabled</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> by comparing the priority of this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with the Error priority. If this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> is info enabled, then it converts the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> message object to a string by invoking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> 'out'. It then proceeds to call all the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> registered appenders in this logger and</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> also higher in the hierarchy depending on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the value of the additivity flag.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_fatal"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_fatal">fatal</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a message object with the priority Fatal.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> First checks if this logger is enabled</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> by comparing the priority of this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> with the Fatal priority. If this logger</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> is error enabled, then it converts the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> message object to a string by invoking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> 'out'. It then proceeds to call all the</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> registered appenders in this logger and</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> also higher in the hierarchy depending on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the value of the additivity flag.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+	<A NAME="f_log"><A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_log">log</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">event_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../l4e_log4e/l4e_priority_short.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">message</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">ANY</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Log a general message.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">event_priority_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">message_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">message</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Comparison</SPAN>
+
+	<A NAME="f__infix_lt"><SPAN CLASS="ekeyword">infix</SPAN> <SPAN CLASS="esymbol">"</SPAN><A CLASS="esymbol" HREF="../l4e_log4e/l4e_logger_short.html#f__infix_lt">&lt;</A><SPAN CLASS="esymbol">"</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">other</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ekeyword">like</SPAN> <SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Is current object less than </SPAN><SPAN CLASS="equoted">other</SPAN><SPAN CLASS="ecomment">?</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">invariant</SPAN>
+
+	<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_name">name</A> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">and then</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_name">name</A><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_empty</SPAN>
+	<SPAN CLASS="etag">appenders_exist</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../l4e_log4e/l4e_logger_short.html#f_appenders">appenders</A> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_LOGGER<FORM ONSUBMIT="go_to('../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_logger_links.html">Relations</A></TD>
+<TD CLASS="nolink2">Contracts</TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_logger_flatshort.html">Flat contracts</A></TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_LOGGER"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

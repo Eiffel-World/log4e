@@ -22,7 +22,7 @@
 <!-- Implementation -->
 
 	<target name="init_system">
-		<set name="system" value="socketclient"/>
+		<set name="system" value="log4e_socket_client"/>
 		<set name="system_dir" value="${LOG4E}/examples/socket/client"/>
 	</target>
 

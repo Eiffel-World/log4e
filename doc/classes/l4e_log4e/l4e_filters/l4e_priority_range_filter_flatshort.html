@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Filter matching on a range of priorities.">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_PRIORITY_RANGE_FILTER Flat contracts</TITLE>
+<LINK REL="stylesheet" HREF="../../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_priority_range_filter_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_priority_range_filter_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_PRIORITY_RANGE_FILTER"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Filter matching on a range of priorities."</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../../l4e_log4e/l4e_filters/l4e_priority_range_filter_flatshort.html">L4E_PRIORITY_RANGE_FILTER</A>
+
+<SPAN CLASS="ekeyword">create</SPAN> 
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filters/l4e_priority_range_filter_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">min_priority</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">max_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../l4e_log4e/l4e_priority_flatshort.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">match_on_filter</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create filter to match 'priority'. The decision is based on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the following decisions:</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is outside the range (inclusive) then Filter_reject is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is within the range and 'match_on_filter' is True then</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter_accept is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is within the range and 'match_on_filter' if False then</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter_neutral is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Passing Void for 'min_priority' effectively sets no minimum range.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Passing Void for 'max_priority' effectively sets no maximum range.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">range_specified</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">or</SPAN> <SPAN CLASS="elocal">max_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">range_valid</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">and</SPAN> <SPAN CLASS="elocal">max_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <A CLASS="esymbol" HREF="../../l4e_log4e/l4e_priority_flatshort.html#f__infix_lt">&lt;</A> <SPAN CLASS="elocal">max_priority</SPAN>
+</A>
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialization</SPAN>
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filters/l4e_priority_range_filter_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">min_priority</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">max_priority</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../l4e_log4e/l4e_priority_flatshort.html">L4E_PRIORITY</A><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">match_on_filter</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create filter to match 'priority'. The decision is based on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the following decisions:</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is outside the range (inclusive) then Filter_reject is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is within the range and 'match_on_filter' is True then</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter_accept is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> If the priority is within the range and 'match_on_filter' if False then</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter_neutral is returned.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Passing Void for 'min_priority' effectively sets no minimum range.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Passing Void for 'max_priority' effectively sets no maximum range.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">range_specified</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">or</SPAN> <SPAN CLASS="elocal">max_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">range_valid</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">and</SPAN> <SPAN CLASS="elocal">max_priority</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="elocal">min_priority</SPAN> <A CLASS="esymbol" HREF="../../l4e_log4e/l4e_priority_flatshort.html#f__infix_lt">&lt;</A> <SPAN CLASS="elocal">max_priority</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status report</SPAN>
+
+	<A NAME="f_decide"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filters/l4e_priority_range_filter_flatshort.html#f_decide">decide</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">event</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../l4e_log4e/l4e_event_flatshort.html">L4E_EVENT</A><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Should 'event' be logged. Return one of Filter_accept,</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter_reject, or Filter_neutral.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_flatshort.html">L4E_FILTER</A>
+			<SPAN CLASS="etag">event_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">event</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_flatshort.html">L4E_FILTER</A>
+			<SPAN CLASS="etag">valid_result</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html#f_valid_filter_decision">valid_filter_decision</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Result</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Filter Constants</SPAN>
+
+	<A NAME="f_filter_accept"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html#f_filter_accept">Filter_accept</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="ekeyword">unique</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Event will be logged. Remaining filters will not</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> be consulted.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html">L4E_FILTER_CONSTANTS</A><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_filter_neutral"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html#f_filter_neutral">Filter_neutral</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="ekeyword">unique</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Remaining filters will be consulted to determine</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> if the event should be logged. If there are no</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> remaining filters then the event will be logged.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html">L4E_FILTER_CONSTANTS</A><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_filter_reject"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html#f_filter_reject">Filter_reject</A><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="ekeyword">unique</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Event will not be logged.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html">L4E_FILTER_CONSTANTS</A><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_valid_filter_decision"><A CLASS="efeature" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html#f_valid_filter_decision">valid_filter_decision</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">code</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Is 'code' a valid filter result code?</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><A CLASS="eclass" HREF="../../l4e_log4e/l4e_filter_constants_flatshort.html">L4E_FILTER_CONSTANTS</A><SPAN CLASS="ecomment">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">invariant</SPAN>
+
+		<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ANY</SPAN>
+	<SPAN CLASS="etag">reflexive_equality</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">standard_is_equal</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+	<SPAN CLASS="etag">reflexive_conformance</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">conforms_to</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_PRIORITY_RANGE_FILTER<FORM ONSUBMIT="go_to('../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_priority_range_filter_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_priority_range_filter_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_PRIORITY_RANGE_FILTER"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

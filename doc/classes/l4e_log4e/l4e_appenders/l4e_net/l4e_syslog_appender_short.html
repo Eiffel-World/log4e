@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Logging appender that writes to Unix syslog via a UDP socket.">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_SYSLOG_APPENDER Contracts</TITLE>
+<LINK REL="stylesheet" HREF="../../../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../../../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_syslog_appender_links.html">Relations</A></TD>
+<TD CLASS="nolink2">Contracts</TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_syslog_appender_flatshort.html">Flat contracts</A></TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_SYSLOG_APPENDER"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Logging appender that writes to Unix syslog via a UDP socket."</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html">L4E_SYSLOG_APPENDER</A>
+
+<SPAN CLASS="ekeyword">create</SPAN> 
+	<A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_make">make</A><SPAN CLASS="esymbol">,</SPAN>
+	<A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_make_on_port">make_on_port</A>
+
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialization</SPAN>
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">host</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">facility</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialise syslog appender that will send events to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the syslod daemon listening at 'host'.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">host_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">host</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">valid_facility</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_constants_short.html#f_is_valid_facility">is_valid_facility</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">facility</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>
+	<A NAME="f_make_on_port"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_make_on_port">make_on_port</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">new_name</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">host</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">port</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">facility</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialise syslog appender that will send events to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the syslod daemon listening at 'host on UDP 'port'.</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">name_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">new_name</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">host_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">host</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="etag">sensible_port</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">port</SPAN> <SPAN CLASS="esymbol">&gt;</SPAN> <SPAN CLASS="enumber">0</SPAN>
+			<SPAN CLASS="etag">valid_facility</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_constants_short.html#f_is_valid_facility">is_valid_facility</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">facility</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status Setting</SPAN>
+
+	<A NAME="f_close"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_close">close</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Release any resources for this appender.</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Removal</SPAN>
+
+	<A NAME="f_dispose"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_syslog_appender_short.html#f_dispose">dispose</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Close this appender when garbage collected. Perform</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> minimal operations to release resources. Do not call</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> other object as they may have been garbage collected.</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_SYSLOG_APPENDER<FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_syslog_appender_links.html">Relations</A></TD>
+<TD CLASS="nolink2">Contracts</TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_syslog_appender_flatshort.html">Flat contracts</A></TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_SYSLOG_APPENDER"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

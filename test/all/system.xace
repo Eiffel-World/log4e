@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<system name="all">
+	<description>
+		description: "XAce file for Goanna Log4e compile all test"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2002 Glenn Maughan"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+	</description>
+
+	<root class="LOG4E_ALL" creation="make"/>
+	
+	<option name="multithreaded" value="true"/>
+
+	<cluster name="root_cluster" location="${LOG4E}/test/all"/>
+	
+	<mount location="${GOBO}/library/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${LOG4E}/library/library.xace"/>
+	<mount location="${LOG4E}/library/other/eiffelnet.xace"/>
+	<mount location="${LOG4E}/library/other/eiffelthread.xace"/>
+	<mount location="${LOG4E}/library/other/yaesockets.xace"/>
+
+</system>

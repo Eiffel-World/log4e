@@ -1,0 +1,291 @@
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="ISE EiffelStudio version 5.1.14">
+<META NAME="project" CONTENT="Project Goanna <http://sourceforge.net/projects/goanna>">
+<META NAME="library" CONTENT="log4e">
+<META NAME="date" CONTENT="$Date$">
+<META NAME="copyright" CONTENT="Copyright (c) 2001 Glenn Maughan and others">
+<META NAME="revision" CONTENT="$Revision$">
+<META NAME="description" CONTENT="Server socket that passes incoming connections to a L4E_SERVING_SOCKET to handle">
+<META NAME="author" CONTENT="Glenn Maughan <glennmaughan@optushome.com.au>">
+<META NAME="license" CONTENT="Eiffel Forum Freeware License v1 (see forum.txt).">
+<META NAME="keywords" CONTENT="Eiffel class">
+<META NAME="keywords" CONTENT="Eiffel class">
+<TITLE>L4E_ROLL_SERVER_SOCKET Flat contracts</TITLE>
+<LINK REL="stylesheet" HREF="../../../default.css" TYPE="text/css">
+<SCRIPT TYPE="text/javascript" SRC="../../../goto.html"></SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFcc99" text="#000000">
+<pre><FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_roll_server_socket_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_roll_server_socket_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_ROLL_SERVER_SOCKET"></TD>
+</TR></TABLE></FORM><SPAN CLASS="ekeyword">indexing</SPAN>
+	<SPAN CLASS="eitag">description</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Server socket that passes incoming connections to a L4E_SERVING_SOCKET to handle"</SPAN>
+	<SPAN CLASS="eitag">project</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Project Goanna &lt;</SPAN><A CLASS="estring" HREF="http://sourceforge.net/projects/goanna">http://sourceforge.net/projects/goanna</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">library</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"log4e"</SPAN>
+	<SPAN CLASS="eitag">date</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Date$"</SPAN>
+	<SPAN CLASS="eitag">revision</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"$Revision$"</SPAN>
+	<SPAN CLASS="eitag">author</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Glenn Maughan &lt;</SPAN><A CLASS="estring" HREF="mailto:glennmaughan@goanna.info">glennmaughan@goanna.info</A><SPAN CLASS="estring">&gt;"</SPAN>
+	<SPAN CLASS="eitag">copyright</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Copyright (c) 2002 Glenn Maughan"</SPAN>
+	<SPAN CLASS="eitag">license</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="estring">"Eiffel Forum License v1 (see forum.txt)."</SPAN>
+
+<SPAN CLASS="ekeyword">class</SPAN> <SPAN CLASS="ekeyword">interface</SPAN>
+	<A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_roll_server_socket_flatshort.html">L4E_ROLL_SERVER_SOCKET</A>
+
+<SPAN CLASS="ekeyword">create</SPAN> 
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_roll_server_socket_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">port</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">backlog</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">notify_appender</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_externally_rolled_file_appender_flatshort.html">L4E_EXTERNALLY_ROLLED_FILE_APPENDER</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create server socket that will notify 'notify_appender'</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">notify_appender_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">notify_appender</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Status report</SPAN>
+
+	<A NAME="f_is_hashable"><SPAN CLASS="nefeature">is_hashable</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> May current object be hashed?</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> (True if it is not its type's default.)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">HASHABLE</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">HASHABLE</SPAN>
+			<SPAN CLASS="etag">ok_if_not_default</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">default</SPAN><SPAN CLASS="esymbol">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> 
+
+	<A NAME="f_multiplex_read_callback"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_roll_server_socket_flatshort.html#f_multiplex_read_callback">multiplex_read_callback</A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> we got a new client. Register the socket that talks to this client as a</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> managed socket so that a select can work on it too</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Constants</SPAN>
+
+	<A NAME="f_infinite_wait"><SPAN CLASS="nefeature">Infinite_wait</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="enumber">-1</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> pass this value when you want to block on a select without a timeout</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">SOCKET_MIXIN</SPAN><SPAN CLASS="ecomment">)</SPAN>
+	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Error related</SPAN>
+
+	<A NAME="f_last_extended_socket_error_code"><SPAN CLASS="nefeature">last_extended_socket_error_code</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> return the last extended socket error cached in the shared library</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">SOCKET_MIXIN</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_last_socket_error_code"><SPAN CLASS="nefeature">last_socket_error_code</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> return the last socket error cached in the shared library</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">SOCKET_MIXIN</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> </SPAN><SPAN CLASS="neclass">HASHABLE</SPAN><SPAN CLASS="ecomment"></SPAN>
+
+	<A NAME="f_hash_code"><SPAN CLASS="nefeature">hash_code</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> The hash-code value of Current</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">HASHABLE</SPAN>
+			<SPAN CLASS="etag">good_hash_value</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="esymbol">&gt;=</SPAN> <SPAN CLASS="enumber">0</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN> <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Initialisation</SPAN>
+
+	<A NAME="f_make"><A CLASS="efeature" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_roll_server_socket_flatshort.html#f_make">make</A> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">port</SPAN><SPAN CLASS="esymbol">,</SPAN> <SPAN CLASS="elocal">backlog</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">notify_appender</SPAN><SPAN CLASS="esymbol">:</SPAN> <A CLASS="eclass" HREF="../../../l4e_log4e/l4e_appenders/l4e_net/l4e_externally_rolled_file_appender_flatshort.html">L4E_EXTERNALLY_ROLLED_FILE_APPENDER</A><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Create server socket that will notify 'notify_appender'</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN>
+			<SPAN CLASS="etag">notify_appender_exists</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="elocal">notify_appender</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Service lookup</SPAN>
+
+	<A NAME="f_port_by_service_and_protocol"><SPAN CLASS="nefeature">port_by_service_and_protocol</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">service_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">;</SPAN> <SPAN CLASS="elocal">protocol_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">SOCKET_MIXIN</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Timeout</SPAN>
+
+	<A NAME="f_bytes_available"><SPAN CLASS="nefeature">bytes_available</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns how many bytes are available to read without blocking</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_bytes_received"><SPAN CLASS="nefeature">bytes_received</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> how many bytes were actually received by the last receive operation</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_bytes_sent"><SPAN CLASS="nefeature">bytes_sent</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> how many bytes were actually sent by the last send operation</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_close"><SPAN CLASS="nefeature">close</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Friendly disconnection</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Close it totally (i.e. free his identifying number)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> bytes will be received if necessary</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_closed</SPAN>
+</A>
+	<A NAME="f_close_incoming"><SPAN CLASS="nefeature">close_incoming</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Closes incoming traffic only</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_close_outgoing"><SPAN CLASS="nefeature">close_outgoing</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Closes outgoing traffic only</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_connection_port"><SPAN CLASS="nefeature">connection_port</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> return the port this socket is using</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_delay"><SPAN CLASS="nefeature">delay</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_disconnect"><SPAN CLASS="nefeature">disconnect</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Abrupt disconnection.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> Close it totally (i.e. free his identifying number)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> not all bytes will be received necessarily</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_handle"><SPAN CLASS="nefeature">handle</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> used by the operating system to uniquely identify this socket</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_has_valid_handle"><SPAN CLASS="nefeature">has_valid_handle</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns true if this socket has a valid operating system handle</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_infinite_timeout"><SPAN CLASS="nefeature">Infinite_timeout</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="enumber">0</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> represents an infinite timeout (blocks until completed)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_is_closed"><SPAN CLASS="nefeature">is_closed</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> true if this socket is closed for incoming and outgoing traffic</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="nefeature">is_closed_outgoing</SPAN> <SPAN CLASS="ekeyword">and</SPAN> <SPAN CLASS="nefeature">is_closed_incoming</SPAN>
+</A>
+	<A NAME="f_is_closed_incoming"><SPAN CLASS="nefeature">is_closed_incoming</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> true if this socket has been closed for reads</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_is_closed_outgoing"><SPAN CLASS="nefeature">is_closed_outgoing</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> true if this socket has been closed for sends</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_is_uninitialized"><SPAN CLASS="nefeature">is_uninitialized</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> true if this socket has not being initialized with a valid handle yet</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_is_valid"><SPAN CLASS="nefeature">is_valid</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">BOOLEAN</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> true if this socket is valid for read/write operations</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_last_error_code"><SPAN CLASS="nefeature">last_error_code</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> the error code returned by the last send/receive API called</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_peer_address"><SPAN CLASS="nefeature">peer_address</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns the IP address of the host this socket is connected to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_peer_name"><SPAN CLASS="nefeature">peer_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns the name of the host this socket is connected to</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_port_by_service"><SPAN CLASS="nefeature">port_by_service</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">service_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN><SPAN CLASS="esymbol">)</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns a port for the given service</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_set_asynchronous"><SPAN CLASS="nefeature">set_asynchronous</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> puts this socket in asynchronous mode (read/writes block until completed or timeout)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_set_delay"><SPAN CLASS="nefeature">set_delay</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">value</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>
+	<A NAME="f_set_synchronous"><SPAN CLASS="nefeature">set_synchronous</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> puts this socket in synchronous mode (read/writes block until completed, no timeout)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">require</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_set_timeout"><SPAN CLASS="nefeature">set_timeout</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="elocal">value</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN><SPAN CLASS="esymbol">)</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> updates teh timeout in milliseconds for a blocking call</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="etag">is_set</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">timeout</SPAN> <SPAN CLASS="esymbol">=</SPAN> <SPAN CLASS="elocal">value</SPAN>
+</A>
+	<A NAME="f_timeout"><SPAN CLASS="nefeature">timeout</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> timeout in milliseconds for a blocking call</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_to_string"><SPAN CLASS="nefeature">to_string</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> returns a text representation of Current, useful for debugging</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> connection</SPAN>
+
+	<A NAME="f_listening_port"><SPAN CLASS="nefeature">listening_port</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">INTEGER</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> return the port at which this socket listens on</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_new_connection_socket"><SPAN CLASS="nefeature">new_connection_socket</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">TCP_SOCKET</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> this is a factory method. Override it to return an instance of a different class</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> that will represent the connection to the client</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN>
+			<SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN>
+			<SPAN CLASS="ereserved">Result</SPAN><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_uninitialized</SPAN>
+</A>
+	<A NAME="f_socket_protocol_name"><SPAN CLASS="nefeature">Socket_protocol_name</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">STRING</SPAN> <SPAN CLASS="ekeyword">is</SPAN> <SPAN CLASS="estring">"tcp"</SPAN></A>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> name of the protocol used by this socket</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+
+	<A NAME="f_wait_for_new_connection"><SPAN CLASS="nefeature">wait_for_new_connection</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="neclass">TCP_SOCKET</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> blocks until there is a client connecting to this server socket. Returns</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> a TCP socket that represents the connection. The actual class that gets instantiated can</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> be changed by overriding the factory method @new_connection_socket</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">TCP_SERVER_SOCKET</SPAN>
+			<SPAN CLASS="etag">void_if_error</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="esymbol">=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="nefeature">last_error_code</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="enumber">0</SPAN>
+			<SPAN CLASS="etag">non_void_if_valid_open</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="ereserved">Result</SPAN> <SPAN CLASS="esymbol">/=</SPAN> <SPAN CLASS="nefeature">void</SPAN> <SPAN CLASS="ekeyword">implies</SPAN> <SPAN CLASS="ereserved">Result</SPAN><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_valid</SPAN> <SPAN CLASS="ekeyword">and</SPAN> <SPAN CLASS="ekeyword">not</SPAN> <SPAN CLASS="ereserved">Result</SPAN><SPAN CLASS="edot">.</SPAN><SPAN CLASS="nefeature">is_closed</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">feature</SPAN>  <SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> creation</SPAN>
+
+	<A NAME="f_make_broadcast"><SPAN CLASS="nefeature">make_broadcast</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> initializes the instance for broadcast mode</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_valid</SPAN>
+</A>
+	<A NAME="f_make_uninitialized"><SPAN CLASS="nefeature">make_uninitialized</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN><SPAN CLASS="ecomment"> tags this instance as not being properly initialized yet.</SPAN>
+			<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">(from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN><SPAN CLASS="ecomment">)</SPAN>
+		<SPAN CLASS="ekeyword">ensure</SPAN> <SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ABSTRACT_SOCKET</SPAN>
+			<SPAN CLASS="nefeature">is_uninitialized</SPAN>
+</A>	
+<SPAN CLASS="ekeyword">invariant</SPAN>
+
+		<SPAN CLASS="ecomment">--</SPAN> <SPAN CLASS="ecomment">from </SPAN><SPAN CLASS="neclass">ANY</SPAN>
+	<SPAN CLASS="etag">reflexive_equality</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">standard_is_equal</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+	<SPAN CLASS="etag">reflexive_conformance</SPAN><SPAN CLASS="esymbol">:</SPAN> <SPAN CLASS="nefeature">conforms_to</SPAN> <SPAN CLASS="esymbol">(</SPAN><SPAN CLASS="ereserved">Current</SPAN><SPAN CLASS="esymbol">)</SPAN>
+
+<SPAN CLASS="ekeyword">end</SPAN> -- <SPAN CLASS="ecomment">class </SPAN>L4E_ROLL_SERVER_SOCKET<FORM ONSUBMIT="go_to('../../../',this.c.value);return false;">
+<TABLE CELLSPACING="5" CELLPADDING="4"><TR>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../class_list.html">Classes</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_list.html">Clusters</A></TD>
+<TD CLASS="link1"><A CLASS="link1" HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_roll_server_socket_links.html">Relations</A></TD>
+<TD CLASS="link2"><A CLASS="link2" HREF="l4e_roll_server_socket_short.html">Contracts</A></TD>
+<TD CLASS="nolink2">Flat contracts</TD>
+<TD CLASS="link2">Go to: <INPUT NAME="c" VALUE="L4E_ROLL_SERVER_SOCKET"></TD>
+</TR></TABLE></FORM></pre>
+<P> Goanna Log4E &#045;&#045; Copyright &copy; 2002 Glenn Maughan
+</BODY>
+</HTML>
+

@@ -46,11 +46,15 @@ feature -- Status report
 		do
 			if event.priority.is_equal (matching_priority) then
 				match_occurred := True
-			end		
-			if match xor match_occurred then
-				Result := Filter_reject
+			end	
+			if match_occurred then
+				if match then
+					Result := Filter_accept
+				else
+					Result := Filter_reject
+				end
 			else
-				Result := Filter_accept
+				Result := Filter_neutral
 			end
 		end
 

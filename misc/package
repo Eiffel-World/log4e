@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ $# != 1 ]; 
+then
+	echo "Usage: $0 <tarballname>"
+	exit 1
+fi
+
+echo "Generating Ace files files..."
+(cd $LOG4E; geant -v install)
+
+echo "Packaging: $1"
+cd $LOG4E/.. 
+tar -c -z -f $1 \
+	--exclude "EIFGEN" \
+	--exclude "TESTGEN" \
+	--exclude "CVS" \
+	--exclude "*.epr" \
+	--exclude "*.melted" \
+	--exclude "preferences.wb" \
+	--exclude "*.rc" \
+	--exclude "Metrics" \
+	--exclude "Diagrams" \
+	--exclude "*.exe" \
+	--exclude "*.obj" \
+	--exclude "*.pch" \
+	--exclude "*.idb" \
+	--exclude "*.ncb" \
+	--exclude "*.id" \
+	--exclude "*.pdb" \
+	--exclude "*.log" \
+	--exclude "*~" \
+	--exclude "*.ced" \
+	--exclude "Documentation" \
+	--exclude "Repository" \
+	log4e
+

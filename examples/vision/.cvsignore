@@ -1,3 +1,10 @@
 *.rc
+*.wb
 *.log
 TESTGEN
+*.exe
+*.epr
+*.melted
+*.ace
+*.esd
+EIFGEN

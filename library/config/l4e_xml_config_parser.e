@@ -89,7 +89,7 @@ feature {NONE} -- Implementation
 	
  	tree_pipe: XM_TREE_CALLBACKS_PIPE
 
-	file_name: UC_STRING
+	file_name: STRING
 			-- Name of file to parse.
 	
 	display_parser_error is
@@ -149,7 +149,7 @@ feature {NONE} -- Implementation
 		require
 			element_exists: element /= Void
 		local
-			name: UC_STRING
+			name: STRING
 		do
 			name := element.name
 			if name.is_equal (Appender_element_name) then
@@ -168,7 +168,7 @@ feature {NONE} -- Implementation
 		require
 			element_exists: element /= Void
 		local
-			name, type: UC_STRING
+			name, type: STRING
 		do
 			if element.has_attribute_by_name (Name_attribute) then
 				name := element.attribute_by_name (Name_attribute).value
@@ -183,7 +183,7 @@ feature {NONE} -- Implementation
 			end
 		end
 	
-	create_appender (name, type: UC_STRING; element: XM_ELEMENT) is
+	create_appender (name, type: STRING; element: XM_ELEMENT) is
 			-- Create an appender of the specified 'type' and store
 			-- in 'appenders' indexed by 'name'
 		require
@@ -213,7 +213,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	create_file_appender (name: UC_STRING; element: XM_ELEMENT): L4E_APPENDER is
+	create_file_appender (name: STRING; element: XM_ELEMENT): L4E_APPENDER is
 			-- Create a file appender using parameters in 'element'
 		require
 			name_exists: name /= Void
@@ -236,7 +236,7 @@ feature {NONE} -- Implementation
 			end
 		end
 	
-	create_rolling_file_appender (name: UC_STRING; element: XM_ELEMENT): L4E_APPENDER is
+	create_rolling_file_appender (name: STRING; element: XM_ELEMENT): L4E_APPENDER is
 			-- Create a rolling file appender using parameters in 'element'
 		require
 			name_exists: name /= Void
@@ -272,7 +272,7 @@ feature {NONE} -- Implementation
 			end
 		end	
 		
-	create_calendar_rolling_appender (name: UC_STRING; element: XM_ELEMENT): L4E_APPENDER is
+	create_calendar_rolling_appender (name: STRING; element: XM_ELEMENT): L4E_APPENDER is
 			-- Create a calendar rolling appender using parameters in 'element'
 		require
 			name_exists: name /= Void
@@ -302,7 +302,7 @@ feature {NONE} -- Implementation
 			end
 		end	
 		
-	retrieve_param_value (name: UC_STRING; parent: XM_ELEMENT): STRING is
+	retrieve_param_value (name: STRING; parent: XM_ELEMENT): STRING is
 			-- Locate child param element with specified name. Return value
 			-- if found, Void otherwise.
 		require
@@ -310,7 +310,7 @@ feature {NONE} -- Implementation
 		local
 			child_node_cursor: DS_BILINEAR_CURSOR [XM_NODE]
 			element: XM_ELEMENT
-			param_name: UC_STRING
+			param_name: STRING
 		do
 			-- iterate through child elements and search for named parameter element
 			if not parent.is_empty then
@@ -353,7 +353,7 @@ feature {NONE} -- Implementation
 		local
 			child_node_cursor: DS_BILINEAR_CURSOR [XM_NODE]
 			element: XM_ELEMENT
-			type: UC_STRING
+			type: STRING
 			filter: L4E_FILTER
 		do
 			-- iterate through child elements and search for filter elements
@@ -489,7 +489,7 @@ feature {NONE} -- Implementation
 		local
 			child_node_cursor: DS_BILINEAR_CURSOR [XM_NODE]
 			element: XM_ELEMENT
-			type: UC_STRING
+			type: STRING
 			layout: L4E_LAYOUT
 		do
 			-- iterate through child elements and search for layout elements
@@ -547,7 +547,7 @@ feature {NONE} -- Implementation
 			end
 		end
 		
-	retrieve_integer_param_value (name: UC_STRING; parent: XM_ELEMENT): INTEGER_REF is
+	retrieve_integer_param_value (name: STRING; parent: XM_ELEMENT): INTEGER_REF is
 			-- Locate an integer child param element with specified name. Return value
 			-- if found, Void otherwise.
 		require
@@ -571,7 +571,7 @@ feature {NONE} -- Implementation
 		require
 			element_exists: element /= Void
 		local
-			name: UC_STRING
+			name: STRING
 		do
 			if element.has_attribute_by_name (Name_attribute) then
 				name := element.attribute_by_name (Name_attribute).value

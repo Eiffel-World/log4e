@@ -13,194 +13,80 @@ class
 
 feature -- Constants
 
-	Log4e_namespace_uri: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("http://goanna.info/spec/log4e")
-		end
+	Log4e_namespace_uri: STRING is "http://goanna.info/spec/log4e"
 
-	Empty_namespace_uri: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("")
-		end
+	Empty_namespace_uri: STRING is ""
 		
-	Appender_element_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("appender")
-		end
+	Appender_element_name: STRING is "appender"
 	
-	Param_element_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("param")
-		end
+	Param_element_name: STRING is "param"
 		
-	Category_element_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("logger")
-		end
+	Category_element_name: STRING is "logger"
 	
-	Root_element_name: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("root")
-		end
+	Root_element_name: STRING is "root"
 		
-	Appenderref_element_name: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("appender-ref")
-		end
+	Appenderref_element_name: STRING is "appender-ref"
 		
-	Filter_element_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("filter")
-		end
+	Filter_element_name: STRING is "filter"
 		
-	Layout_element_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("layout")
-		end
+	Layout_element_name: STRING is "layout"
 		
-	Name_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("name")
-		end
+	Name_attribute: STRING is "name"
 	
-	Value_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("value")
-		end
+	Value_attribute: STRING is "value"
 		
-	Type_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("type")
-		end
+	Type_attribute: STRING is "type"
 	
-	Priority_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("priority")
-		end
+	Priority_attribute: STRING is "priority"
 
-	Additive_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("additive")
-		end	
+	Additive_attribute: STRING is "additive"
 	
-	Pattern_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("pattern")
-		end
+	Pattern_attribute: STRING is "pattern"
 		
-	Ref_attribute: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("ref")
-		end
+	Ref_attribute: STRING is "ref"
 		
-	Stdout_appender_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("stdout")
-		end
+	Stdout_appender_type: STRING is "stdout"
 		
-	Stderr_appender_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("stderr")
-		end
+	Stderr_appender_type: STRING is "stderr"
 
-	File_appender_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("file")
-		end
+	File_appender_type: STRING is "file"
 	
-	Rollingfile_appender_type: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("rollingfile")
-		end
+	Rollingfile_appender_type: STRING is "rollingfile"
 
-	Calendarrolling_appender_type: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("calendarrolling")
-		end
+	Calendarrolling_appender_type: STRING is "calendarrolling"
 	
-	Prioritymatch_filter_type: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("prioritymatch")
-		end
+	Prioritymatch_filter_type: STRING is "prioritymatch"
 		
-	Priorityrange_filter_type: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("priorityrange")
-		end
+	Priorityrange_filter_type: STRING is "priorityrange"
 		
-	Stringmatch_filter_type: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("stringmatch")
-		end
+	Stringmatch_filter_type: STRING is "stringmatch"
 		
-	Datetime_layout_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("datetime")
-		end
+	Datetime_layout_type: STRING is "datetime"
 		
-	Pattern_layout_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("pattern")
-		end
+	Pattern_layout_type: STRING is "pattern"
 		
-	Simple_layout_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("simple")
-		end
+	Simple_layout_type: STRING is "simple"
 	
-	Time_layout_type: UC_UTF8_STRING is
-		once 
-			create Result.make_from_string ("time")
-		end	
+	Time_layout_type: STRING is "time"
 		
-	Filename_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("filename")
-		end
+	Filename_param_name: STRING is "filename"
 
-	Append_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("append")
-		end
+	Append_param_name: STRING is "append"
 	
-	Maxsize_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("maxsize")
-		end
+	Maxsize_param_name: STRING is "maxsize"
 	
-	Numbackups_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("numbackups")
-		end
+	Numbackups_param_name: STRING is "numbackups"
 	
-	Priority_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("priority")
-		end
+	Priority_param_name: STRING is "priority"
 	
-	Prioritystart_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("prioritystart")
-		end
+	Prioritystart_param_name: STRING is "prioritystart"
 		
-	Priorityend_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("priorityend")
-		end
+	Priorityend_param_name: STRING is "priorityend"
 		
-	Match_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("match")
-		end
+	Match_param_name: STRING is "match"
 	
-	String_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("string")
-		end
+	String_param_name: STRING is "string"
 
-	Pattern_param_name: UC_UTF8_STRING is
-		once
-			create Result.make_from_string ("pattern")
-		end
+	Pattern_param_name: STRING is "pattern"
 		
 end -- class L4E_XML_CONFIG_CONSTANTS
