@@ -4,8 +4,9 @@
 
 	<description>
 		description: "Cluster definition for ISE EiffelThread classes"
-		project: "Goanna <http://sourceforge.net/projects/goanna"
+		project: "Goanna [http://sourceforge.net/projects/goanna]"
 		library: "log4e"
+		author: "Glenn Maughan [mailto:glennmaughan@goanna.info]"
 		copyright: "Copyright (c) 2002, Glenn Maughan"
 		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
