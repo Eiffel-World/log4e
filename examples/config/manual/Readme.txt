@@ -10,5 +10,6 @@ After compiling, run the example using:
 
 	log4e_manual_config
 
-You will find two log files created with a series of log messages.
+You will find three log files created with a series of log messages. See the
+comments in the source for an explaination of each logger.
 
