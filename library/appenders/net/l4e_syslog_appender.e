@@ -91,7 +91,7 @@ feature {NONE} -- Implementation
 	do_append (event: L4E_EVENT) is
 			-- Append 'event' to this appender
 		do
-			socket.send_string (event.rendered_message)
+			socket.send_string (layout.format (event))
 			if socket.last_error_code /= Sock_err_no_error then
 				internal_log.error ("Syslog socket write error: " + socket.last_error_code.out)
 				internal_log.error ("    Socket error code: " + socket.last_socket_error_code.out)
