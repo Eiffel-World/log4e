@@ -1,14 +1,13 @@
 $Id$
 
-Log4E XML Configuration Example
--------------------------------
+Log4E Shared Configuration Example
+----------------------------------
 
-This example configures a series of loggers using XML.
-That is, all loggers are created and configured in code.
+This example configures a series of loggers using a shared hierarchy.
 
 After compiling, run the example and specify the XML configuration file using:
 
-	log4e_xml_config log4e_config.xml
+	log4e_shared_config log4e_config.xml
 
 You will find threelog files created with a series of log messages. See the
 comments in the source for an explaination of each logger.

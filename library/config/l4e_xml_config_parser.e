@@ -31,7 +31,7 @@ inherit
 		
 creation
 
-	make
+	make, make_with_hierarchy
 
 feature -- Initialisation
 
@@ -45,6 +45,17 @@ feature -- Initialisation
 			create category_elements.make_default
 			create appenders.make_default
 			parse
+		end
+		
+	make_with_hierarchy (config_file_name: STRING; h: L4E_HIERARCHY) is
+			-- Create a new config parser that will parse the file
+			-- named 'config_file_name' and configure 'h'.
+		require
+			config_file_name_exists: config_file_name /= Void
+			h_not_void: h /= Void
+		do
+			hierarchy := h
+			make (config_file_name)
 		end
 		
 feature -- Parsing
@@ -681,7 +692,13 @@ feature {NONE} -- Implementation
 							if element.has_attribute_by_name (Priority_attribute) then
 								priority := create_priority (element.attribute_by_name (Priority_attribute).value.out)
 								if priority /= Void then
-									create hierarchy.make (priority)
+									-- if the hierarchy is Void then create a new one, otherwise just set the
+									-- priority
+									if hierarchy = Void then
+										create hierarchy.make (priority)
+									else
+										hierarchy.root.set_priority (priority)
+									end	
 									-- store the root element for post processing
 									root_element := element
 								else

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<system name="log4e_shared_config">
+	<description>
+		description: "XAce file for Goanna Log4e shared configuration example"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2002 Glenn Maughan"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+	</description>
+
+	<root class="LOG4E_SHARED_CONFIG" creation="make"/>
+
+	<option name="arguments" value="l4e_config.xml"/>
+	<option unless="${DEBUG}">
+		<option name="assertion" value="none"/>
+		<option name="finalize" value="true"/>
+	</option>
+	<option if="${DEBUG}">
+		<option name="assertion" value="require"/>
+		<option name="finalize" value="false"/>
+	</option>
+	
+	<cluster name="root_cluster" location="${LOG4E}/examples/config/shared">
+		<option name="assertion" value="all" if="${DEBUG}"/>
+	</cluster>
+	
+	<mount location="${GOBO}/library/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${LOG4E}/library/library.xace"/>
+	
+</system>

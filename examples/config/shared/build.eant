@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="shared" default="help">
+
+	<description>
+		description: "Log4e shared configuration example"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2002 Glenn Maughan"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+	</description>
+
+	<inherit>
+		<parent location="${LOG4E}/misc/eiffel.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="log4e_shared_config"/>
+		<set name="system_dir" value="${LOG4E}/examples/config/shared"/>
+	</target>
+
+</project>
