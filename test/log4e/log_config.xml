@@ -42,9 +42,9 @@
 		</filter>
 	</appender>
 
-	<category name="test.cat" priority="info" additive="false">
+	<logger name="test.cat" priority="info" additive="false">
 		<appender-ref ref="STDOUT"/>
-	</category>
+	</logger>
 
 	<root priority="debug">
 		<appender-ref ref="STDOUT"/>

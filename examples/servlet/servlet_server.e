@@ -88,7 +88,7 @@ feature {NONE} -- Implementation
 	print_usage is
 			-- Display usage information
 		do
-			print ("Usage: servlet_server <port-number> <document-root>%R%N")
+			print ("Usage: log4e_serlet <port-number> <document-root>%R%N")
 		end
 
 	initialise_logger is

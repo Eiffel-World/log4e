@@ -81,9 +81,7 @@ feature {NONE} -- Implementation
 	display_parser_error is
 			-- Output parsing error
 		do
-			internal_log.error ("XML parser error: " + parser.last_error_description
-				+ " (" + parser.last_error_extended_description + ")")
-			internal_log.error ("At position: " + parser.position.out)
+			internal_log.error (parser.last_error_extended_description)
 		end
 
 	appenders: DS_HASH_TABLE [L4E_APPENDER, STRING]
@@ -192,8 +190,9 @@ feature {NONE} -- Implementation
 			elseif type.is_equal (Calendarrolling_appender_type) then
 				appender := create_calendar_rolling_appender (name, element)
 			end	
-			-- process filter sub-elements
+			-- process sub-elements
 			process_appender_filters (appender, element)
+			process_appender_layout (appender, element)
 			-- store appender
 			if appender /= Void then
 				appenders.force (appender, name.out)	
@@ -468,6 +467,72 @@ feature {NONE} -- Implementation
 			end
 		end	
 		
+	process_appender_layout (appender: L4E_APPENDER; parent: XM_ELEMENT) is
+			-- Search 'parent' for any nested layout element and set it on the 'appender'
+		require
+			appender_exists: appender /= Void
+			parent_exists: parent /= Void
+		local
+			child_node_cursor: DS_BILINEAR_CURSOR [XM_NODE]
+			element: XM_ELEMENT
+			type: UC_STRING
+			layout: L4E_LAYOUT
+		do
+			-- iterate through child elements and search for layout elements
+			if not parent.is_empty then
+				from
+					child_node_cursor := parent.new_cursor
+					child_node_cursor.start
+				until		
+					child_node_cursor.off
+				loop
+					element ?= child_node_cursor.item
+					-- skip non-elements
+					if element /= Void then
+						if element.name.is_equal (Layout_element_name) then
+							-- check for a type attribute
+							if element.has_attribute_by_name (Type_attribute) then
+								type := element.attribute_by_name (Type_attribute).value
+								if type.is_equal (Datetime_layout_type) then
+									create {L4E_DATE_TIME_LAYOUT} layout
+								elseif type.is_equal (Simple_layout_type) then
+									create {L4E_SIMPLE_LAYOUT} layout
+								elseif type.is_equal (Time_layout_type) then
+									create {L4E_TIME_LAYOUT} layout.make
+								elseif type.is_equal (Pattern_layout_type) then
+									layout := create_pattern_layout (element)
+								else
+									internal_log.error ("Unknown layout type " + type.out)
+								end
+								if layout /= Void then
+									appender.set_layout (layout)
+								end
+							else
+								internal_log.error ("Layout element type attribute not found.")
+							end
+						end
+					end
+					child_node_cursor.forth
+				end					
+			end
+		end
+		
+	create_pattern_layout (element: XM_ELEMENT): L4E_LAYOUT is
+			-- Create a pattern layout.
+		require
+			element_exists: element /= Void
+		local
+			pattern: STRING
+		do
+			-- find mandatory pattern parameter
+			pattern := retrieve_param_value (Pattern_param_name, element)
+			if pattern /= Void then
+				create {L4E_PATTERN_LAYOUT} Result.make (pattern)
+			else
+				internal_log.error ("Pattern layout element 'pattern' attribute not found.")
+			end
+		end
+		
 	retrieve_integer_param_value (name: UC_STRING; parent: XM_ELEMENT): INTEGER_REF is
 			-- Locate an integer child param element with specified name. Return value
 			-- if found, Void otherwise.
@@ -521,13 +586,13 @@ feature {NONE} -- Implementation
 	post_process_category (name: STRING; element: XM_ELEMENT) is
 			-- Process a category element and create appropriate category object
 		local
-			category: L4E_CATEGORY
+			category: L4E_LOGGER
 			priority: L4E_PRIORITY
 			child_node_cursor: DS_BILINEAR_CURSOR [XM_NODE]
 			child: XM_ELEMENT
 			additive: STRING
 		do
-			category := hierarchy.category (name)
+			category := hierarchy.logger (name)
 			-- search for optional priority attribute
 			if element.has_attribute_by_name (Priority_attribute) then
 				priority := create_priority (element.attribute_by_name (Priority_attribute).value.out)

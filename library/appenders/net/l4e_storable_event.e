@@ -1,5 +1,5 @@
 indexing
-	description: "Storable logging event. Memento of an event"
+	description: "Storable logging event. Memento of an event that does not retain the logger reference."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "log4e"
 	date: "$Date$"
@@ -9,10 +9,6 @@ indexing
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
 	
 class L4E_STORABLE_EVENT
-	
-inherit
-	
-	STORABLE
 
 creation
 	

@@ -15,9 +15,18 @@
 	<root class="SOCKET_CLIENT" creation="make"/>
 
 	<option name="arguments" value="localhost 9000"/>
-	<option name="assertion" value="all"/>
+	<option unless="${DEBUG}">
+		<option name="assertion" value="none"/>
+		<option name="finalize" value="true"/>
+	</option>
+	<option if="${DEBUG}">
+		<option name="assertion" value="require"/>
+		<option name="finalize" value="false"/>
+	</option>
 
-	<cluster name="root_cluster" location="${LOG4E}/examples/socket/client"/>
+	<cluster name="root_cluster" location="${LOG4E}/examples/socket/client">
+		<option name="assertion" value="all" if="${DEBUG}"/>
+	</cluster>
 	
 	<mount location="${GOBO}/library/library.xace"/>
 	<mount location="${GOBO}/library/kernel.xace"/>

@@ -154,7 +154,6 @@ feature {NONE} -- Implementation / Constants
 			-- Setup widgets
 		local
 			vb: EV_VERTICAL_BOX
-			hb: EV_HORIZONTAL_BOX
 			sep: EV_HORIZONTAL_SEPARATOR
 			table: EV_TABLE
 			label: EV_LABEL
@@ -236,11 +235,10 @@ feature {NONE} -- Implementation / Constants
 			-- clear button
 			create clear_button.make_with_text ("Clear")
 			clear_button.select_actions.extend (agent clear_events)
+			clear_button.disable_sensitive
 			table.put (clear_button, 4, 3, 1, 1)
 			
 			create split
-			vb.extend (split)
-			
 			-- list
 			create event_list
 			event_list.set_column_titles (<<"Date/time", "Priority", "Logger", "Message">>)
@@ -257,6 +255,8 @@ feature {NONE} -- Implementation / Constants
 			create detail_text
 			detail_text.disable_edit
 			split.extend (detail_text)
+			
+			vb.extend (split)	
 		end
 
 feature -- Events
@@ -282,6 +282,7 @@ feature -- Events
 					lock_update
 					event_list.extend (row)
 					event_list.ensure_item_visible (row)
+					clear_button.enable_sensitive
 					unlock_update
 				end
 			end
@@ -339,8 +340,6 @@ feature -- Events
 			message: STRING
 		do	
 			message := clone (row.log_event.formatted_message)
---			message.prune_all ('%N')
---			message.prune_all ('%R')
 			detail_text.set_text (message)
 		end
 	

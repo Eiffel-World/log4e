@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<config xmlns="http://goanna.info/spec/log4e">
+
+	<!-- create file appender to log to app.log -->
+	<appender name="file" type="file">
+		<param name="filename" value="app.log"/>
+		<param name="append" value="true"/>
+	</appender>
+
+	<!-- create file appender to log to app-b.log -->
+	<appender name="file2" type="file">
+		<param name="filename" value="app-b.log"/>
+		<param name="append" value="true"/>
+	</appender>
+
+	<!-- create filtered file appender to log to app-c.log 
+		filter on all messages containing the string 'twist' -->
+	<appender name="file3" type="file">
+		<param name="filename" value="app-c.log"/>
+		<param name="append" value="true"/>
+		<filter type="stringmatch">
+			<param name="string" value="an"/>
+			<param name="match" value="false"/>
+		</filter>
+		<layout type="pattern">
+			<param name="pattern" value="&amp;d [&amp;-6p] &amp;c - &amp;m"/>
+		</layout>
+	</appender>
+
+	<!-- configure logger 'a' for error events -->
+	<logger name="a" priority="error" additive="true"/>
+
+	<!-- configure logger 'b' for fatal events -->
+	<logger name="b" priority="fatal" additive="true">
+		<appender-ref ref="file2"/>
+	</logger>
+
+	<!-- configure the root category for debug events and to log
+		to the appender 'file' and 'file3' -->
+	<root priority="debug">
+		<appender-ref ref="file"/>
+		<appender-ref ref="file3"/>
+	</root>
+
+</config>

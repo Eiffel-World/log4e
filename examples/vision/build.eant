@@ -14,7 +14,7 @@
 	</description>
 
 	<inherit>
-		<parent location="${GOBO}/misc/eiffel.eant">
+		<parent location="${LOG4E}/misc/eiffel_ise_only.eant">
 			<redefine target="init_system"/>
 		</parent>
 	</inherit>
@@ -22,8 +22,8 @@
 <!-- Implementation -->
 
 	<target name="init_system">
-		<set name="library" value="vision"/>
-		<set name="system_dir" value="${LOG4E}/examples/${library}"/>
+		<set name="system" value="logvision"/>
+		<set name="system_dir" value="${LOG4E}/examples/vision"/>
 	</target>
 
 </project>

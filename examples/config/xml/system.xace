@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 
-<system name="logvision">
+<system name="log4e_xml_config">
 	<description>
-		description: "XAce file for Goanna Log4e Vision server example"
-		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		description: "XAce file for Goanna Log4e XML configuration example"
 		date: "$Date$"
 		revision: "$Revision$"
 		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
-		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		copyright: "Copyright (c) 2002 Glenn Maughan"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
-		thanks: "Modified version of GOBO ant files"
 	</description>
 
-	<root class="L4E_VISION" creation="make"/>
+	<root class="LOG4E_XML_CONFIG" creation="make"/>
 
-	<option name="arguments" value="9000"/>
-	<option name="console_application" value="false"/>
+	<option name="arguments" value="l4e_config.xml"/>
 	<option unless="${DEBUG}">
 		<option name="assertion" value="none"/>
 		<option name="finalize" value="true"/>
@@ -24,16 +21,13 @@
 		<option name="assertion" value="require"/>
 		<option name="finalize" value="false"/>
 	</option>
-
-	<cluster name="root_cluster" location="${LOG4E}/examples/vision">
+	
+	<cluster name="root_cluster" location="${LOG4E}/examples/config/xml">
 		<option name="assertion" value="all" if="${DEBUG}"/>
 	</cluster>
 	
 	<mount location="${GOBO}/library/library.xace"/>
 	<mount location="${GOBO}/library/kernel.xace"/>
 	<mount location="${LOG4E}/library/library.xace"/>
-	<mount location="${LOG4E}/library/other/eiffelnet.xace"/>
-	<mount location="${LOG4E}/library/other/vision2.xace"/>
-	<mount location="${LOG4E}/library/other/wel.xace"/>
-
+	
 </system>

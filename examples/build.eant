@@ -13,6 +13,8 @@
 	<target name="help">
 		<echo message="usage:"/>
 		<echo message="   geant install"/>
+		<echo message="   geant compile"/>
+		<echo message="   geant compile_debug"/>
 		<echo message="   geant clean"/>
 		<echo message="   geant clobber"/>
 	</target>
@@ -35,6 +37,24 @@
 		<geant target="do_all"/>
 	</target>
 
+	<target name="compile" depend="init">
+		<description>
+			Compile all examples.
+		</description>
+
+		<set name="target" value="compile"/>
+		<geant target="do_all"/>
+	</target>
+
+	<target name="compile_debug" depend="init">
+		<description>
+			Compile all examples in debug mode.
+		</description>
+
+		<set name="target" value="compile_debug"/>
+		<geant target="do_all"/>
+	</target>
+
 	<target name="clobber" depend="init">
 		<description>
 			Remove all generated files.
@@ -43,7 +63,6 @@
 		<set name="target" value="clobber"/>
 		<geant target="do_all"/>
 	</target>
-
 
 <!-- Implementation -->
 

@@ -35,7 +35,7 @@ feature -- Constants
 		
 	Category_element_name: UC_UTF8_STRING is
 		once
-			create Result.make_from_string ("category")
+			create Result.make_from_string ("logger")
 		end
 	
 	Root_element_name: UC_UTF8_STRING is
@@ -51,6 +51,11 @@ feature -- Constants
 	Filter_element_name: UC_UTF8_STRING is
 		once
 			create Result.make_from_string ("filter")
+		end
+		
+	Layout_element_name: UC_UTF8_STRING is
+		once
+			create Result.make_from_string ("layout")
 		end
 		
 	Name_attribute: UC_UTF8_STRING is
@@ -72,11 +77,16 @@ feature -- Constants
 		once
 			create Result.make_from_string ("priority")
 		end
-	
+
 	Additive_attribute: UC_UTF8_STRING is
 		once
 			create Result.make_from_string ("additive")
 		end	
+	
+	Pattern_attribute: UC_UTF8_STRING is
+		once
+			create Result.make_from_string ("pattern")
+		end
 		
 	Ref_attribute: UC_UTF8_STRING is
 		once
@@ -123,6 +133,26 @@ feature -- Constants
 			create Result.make_from_string ("stringmatch")
 		end
 		
+	Datetime_layout_type: UC_UTF8_STRING is
+		once 
+			create Result.make_from_string ("datetime")
+		end
+		
+	Pattern_layout_type: UC_UTF8_STRING is
+		once 
+			create Result.make_from_string ("pattern")
+		end
+		
+	Simple_layout_type: UC_UTF8_STRING is
+		once 
+			create Result.make_from_string ("simple")
+		end
+	
+	Time_layout_type: UC_UTF8_STRING is
+		once 
+			create Result.make_from_string ("time")
+		end	
+		
 	Filename_param_name: UC_UTF8_STRING is
 		once
 			create Result.make_from_string ("filename")
@@ -168,4 +198,9 @@ feature -- Constants
 			create Result.make_from_string ("string")
 		end
 
+	Pattern_param_name: UC_UTF8_STRING is
+		once
+			create Result.make_from_string ("pattern")
+		end
+		
 end -- class L4E_XML_CONFIG_CONSTANTS
