@@ -3,11 +3,12 @@
 <system name="nteventlog">
 	<description>
 		description: "XAce file for Goanna Log4e NT event log example"
+		project: "Goanna <http://sourceforge.net/projects/goanna"
+		library: "log4e"
+		copyright: "Copyright (c) 2002, Glenn Maughan"
+		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
 		revision: "$Revision$"
-		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
-		copyright: "Copyright (c) 2002 Glenn Maughan"
-		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
 	</description>
 
 	<root class="NT_EVENT_LOG" creation="make"/>

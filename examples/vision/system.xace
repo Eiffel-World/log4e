@@ -3,13 +3,12 @@
 <system name="logvision">
 	<description>
 		description: "XAce file for Goanna Log4e Vision server example"
-		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		project: "Goanna <http://sourceforge.net/projects/goanna"
+		library: "log4e"
+		copyright: "Copyright (c) 2002, Glenn Maughan"
+		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
 		revision: "$Revision$"
-		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
-		copyright: "Copyright (c) 2001 Glenn Maughan and others"
-		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
-		thanks: "Modified version of GOBO ant files"
 	</description>
 
 	<root class="L4E_VISION" creation="make"/>

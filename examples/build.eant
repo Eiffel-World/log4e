@@ -4,8 +4,10 @@
 
 	<description>
 		description: "Eiffel Ant file for Goanna Log4e examples"
-		copyright: "Copyright (c) 2002 Glenn Maughan"
-		license: "Eiffel Forum License v1 (see forum.txt)"
+		project: "Goanna <http://sourceforge.net/projects/goanna"
+		library: "log4e"
+		copyright: "Copyright (c) 2002, Glenn Maughan"
+		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
 		revision: "$Revision$"
 	</description>

@@ -4,11 +4,12 @@
 
 	<description>
 		description: "Eiffel compilation"
+		project: "Goanna <http://sourceforge.net/projects/goanna"
+		library: "log4e"
 		copyright: "Copyright (c) 2002, Glenn Maughan"
-		license: "Eiffel Forum License v1 (see forum.txt)"
+		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
 		revision: "$Revision$"
-		thanks: "Modified from GOBO build files by Eric Bezault"
 	</description>
 
 	<inherit>

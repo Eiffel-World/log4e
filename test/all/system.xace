@@ -3,11 +3,12 @@
 <system name="all">
 	<description>
 		description: "XAce file for Goanna Log4e compile all test"
+		project: "Goanna <http://sourceforge.net/projects/goanna"
+		library: "log4e"
+		copyright: "Copyright (c) 2002, Glenn Maughan"
+		license: "Eiffel Freeware License v1 (see forum.txt)"
 		date: "$Date$"
 		revision: "$Revision$"
-		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
-		copyright: "Copyright (c) 2002 Glenn Maughan"
-		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
 	</description>
 
 	<root class="LOG4E_ALL" creation="make"/>
