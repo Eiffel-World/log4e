@@ -64,19 +64,28 @@ feature -- Parsing
 			-- Parse specified configuration file and create appropriate
 			-- Log4E topology. Make resulting heirarchy available in 
 			-- 'hierarchy'.
+		local
+			stream: KL_TEXT_INPUT_FILE
 		do
 			create parser.make
 			create tree_pipe.make
 			parser.set_callbacks (tree_pipe.start)
 			
 			debug ("log4e_config")
-				Internal_log.warn ("Parsing file: " + file_name.out + "...%R%N")
+				Internal_log.warn ("Parsing file: " + file_name.out + "...%N")
 			end
-			parser.parse_from_file_name (file_name)
-			if not tree_pipe.error.has_error then
-				process_config_tree (tree_pipe.document)
+			create stream.make (file_name)
+			stream.open_read
+			if not stream.is_open_read then
+				internal_log.error ("Cannot open " + file_name.out + " for reading%N")
 			else
-				display_parser_error
+				parser.parse_from_stream (stream)
+				stream.close
+				if not tree_pipe.error.has_error then
+					process_config_tree (tree_pipe.document)
+				else
+					display_parser_error
+				end
 			end
 		end
 	
