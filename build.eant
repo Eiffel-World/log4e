@@ -13,7 +13,7 @@
 	<target name="help">
 		<echo message="usage:"/>
 		<echo message="   geant install"/>
-		<echo message="   geant delivery"/>
+		<echo message="   geant dist"/>
 		<echo message="   geant clean"/>
 		<echo message="   geant clobber"/>
 	</target>
@@ -25,6 +25,7 @@
 
 		<geant file="build.eant" target="install" dir="examples"/>
 		<geant file="build.eant" target="install" dir="test"/>
+		<geant file="build.eant" target="clobber" dir="test/all"/>
 	</target>
 
 	<target name="clean" depend="init">
@@ -34,6 +35,7 @@
 
 		<geant file="build.eant" target="clean" dir="examples"/>
 		<geant file="build.eant" target="clean" dir="test"/>
+		<geant file="build.eant" target="clobber" dir="test/all"/>
 	</target>
 
 	<target name="clobber" depend="init">
@@ -43,6 +45,7 @@
 
 		<geant file="build.eant" target="clobber" dir="examples"/>
 		<geant file="build.eant" target="clobber" dir="test"/>
+		<geant file="build.eant" target="clobber" dir="test/all"/>
 	</target>
 
 	<target name="dist" depend="init">

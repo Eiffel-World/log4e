@@ -7,7 +7,7 @@ then
 fi
 
 echo "Generating Ace files files..."
-(cd $LOG4E; geant -v install)
+(cd $LOG4E; geant -v dist)
 
 echo "Packaging: $1"
 cd $LOG4E/.. 
