@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<system name="logvision">
+	<description>
+		description: "XAce file for Goanna Log4e Vision server example"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO ant files"
+	</description>
+
+	<root class="L4E_VISION" creation="make"/>
+
+	<option name="arguments" value="9000"/>
+	<option name="assertion" value="all"/>
+
+	<cluster name="root_cluster" location="${LOG4E}/examples/vision"/>
+	
+	<mount location="${GOBO}/library/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${LOG4E}/library/library.xace"/>
+	<mount location="${LOG4E}/library/other/eiffelnet.xace"/>
+	<mount location="${LOG4E}/library/other/vision2.xace"/>
+	<mount location="${LOG4E}/library/other/wel.xace"/>
+
+</system>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<library name="EiffelNet" prefix="ise_">
+
+	<description>
+		description: "Cluster definition for ISE EiffelNet"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO cluster.xace files"
+	</description>
+
+	<cluster name="net" location="${ISE_EIFFEL}/library/net">
+		<cluster name="abstract" prefix="abstract_">
+			<cluster name="client_server"/>
+			<cluster name="socket"/>
+		</cluster>
+		<cluster name="local" prefix="local_">
+			<cluster name="client_server"/>
+			<cluster name="socket"/>
+		</cluster>
+		<cluster name="mail"/>
+		<cluster name="network" prefix="network_">
+			<cluster name="client_server"/>
+			<cluster name="socket"/>
+		</cluster>
+		<cluster name="polling" prefix="polling_">
+			<cluster name="abstract"/>
+			<cluster name="implementation"/>
+		</cluster>
+		<cluster name="transfer">
+			<cluster name="addresses">
+				<cluster name="comparators"/>
+			</cluster>
+			<cluster name="resources"/>
+			<cluster name="transactions"/>
+		</cluster>
+		<option name="link" value="$(ISE_EIFFEL)\library\net\spec\$(ISE_C_COMPILER)\lib\net.lib" if="${GOBO_OS}=windows"/>
+		<option name="link" value="$(ISE_EIFFEL)\library\net\spec\$(ISE_C_COMPILER)\lib\net.o" if="${GOBO_OS}=unix"/>
+	</cluster>
+
+</library>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<system name="log4e_socket_client">
+	<description>
+		description: "XAce file for Goanna Log4e socket client example"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO ant files"
+	</description>
+
+	<root class="SOCKET_CLIENT" creation="make"/>
+
+	<option name="arguments" value="localhost 9000"/>
+	<option name="assertion" value="all"/>
+
+	<cluster name="root_cluster" location="${LOG4E}/examples/socket/client"/>
+	
+	<mount location="${GOBO}/library/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${LOG4E}/library/library.xace"/>
+	<mount location="${LOG4E}/library/other/eiffelnet.xace"/>
+
+</system>

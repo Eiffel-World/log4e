@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<project name="log4e" default="help">
+
+	<description>
+		description: "Eiffel Ant file for Goanna Log4e"
+		copyright: "Copyright (c) 2001-2002, Glenn Maughan"
+		license: "Eiffel Forum License v1 (see forum.txt)"
+		date: "$Date$"
+		revision: "$Revision$"
+	</description>
+
+	<target name="help">
+		<echo message="usage:"/>
+		<echo message="   geant install"/>
+		<echo message="   geant delivery"/>
+		<echo message="   geant clean"/>
+		<echo message="   geant clobber"/>
+	</target>
+
+	<target name="install" depend="init">
+		<description>
+			Install the Goanna Log4e package.
+		</description>
+
+		<geant file="build.eant" target="install" dir="examples"/>
+		<geant file="build.eant" target="install" dir="test"/>
+	</target>
+
+	<target name="clean" depend="init">
+		<description>
+			Remove intermediary generated files.
+		</description>
+
+		<geant file="build.eant" target="clean" dir="examples"/>
+		<geant file="build.eant" target="clean" dir="test"/>
+	</target>
+
+	<target name="clobber" depend="init">
+		<description>
+			Remove all generated files.
+		</description>
+
+		<geant file="build.eant" target="clobber" dir="examples"/>
+		<geant file="build.eant" target="clobber" dir="test"/>
+	</target>
+
+	<target name="dist" depend="init">
+		<description>
+			Generate distribution package.
+		</description>
+
+		<geant target="install"/>
+		<geant target="clean"/>
+	</target>
+
+<!-- Implementation -->
+
+	<target name="init">
+		<geant target="init_os"/>
+	</target>
+
+	<target name="init_os">
+		<geant target="init_windows"/>
+		<geant target="init_unix"/>
+	</target>
+
+	<target name="init_windows" if="${GOBO_OS}=windows">
+		<set name="exe" value=".exe"/>
+	</target>
+
+	<target name="init_unix" unless="${GOBO_OS}=windows">
+		<set name="exe" value=""/>
+	</target>
+
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<project name="log4e" inherit="${GOBO}/misc/test.eant" default="help">
+
+	<description>
+		system:      "Goanna log4e Library Tester"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+
+	</description>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="xlog4e"/>
+		<set name="library" value="log4e"/>
+		<set name="system_dir" value="${LOG4E}/test/${library}"/>
+	</target>
+
+</project>

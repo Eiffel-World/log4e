@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<project name="servlet" default="help">
+
+	<description>
+		description: "Log4e configuration servlet example"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO ant files"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/eiffel.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="servlet"/>
+		<set name="library" value="servlet"/>
+		<set name="system_dir" value="${LOG4E}/examples/${library}"/>
+	</target>
+
+</project>

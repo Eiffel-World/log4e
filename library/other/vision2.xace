@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<library name="vision2" prefix="vision2_">
+
+	<description>
+		description: "Library definition for ISE EiffelVision classes"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO cluster.xace files"
+	</description>
+
+	<cluster name="event" location="${ISE_EIFFEL}/library/base/event"/>
+
+	<cluster name="vision" location="${ISE_EIFFEL}/library/vision2">
+		<option name="abstract" value="true"/>
+		<cluster name="contrib" prefix="contrib_">
+			<option name="abstract" value="true"/>
+			<cluster name="implementation">
+				<option name="abstract" value="true"/>
+				<cluster name="gtk" if="${GOBO_OS}=unix"/>
+				<cluster name="mswin" if="${GOBO_OS}=windows"/>
+			</cluster>
+		</cluster>
+		<cluster name="implementation" prefix="impl_">
+			<option name="abstract" value="true"/>
+			<cluster name="implementation_interface">
+				<option name="abstract" value="true"/>
+				<cluster name="events"/>
+				<cluster name="items"/>
+				<cluster name="kernel"/>
+				<cluster name="properties"/>
+				<cluster name="support"/>
+				<cluster name="widgets">
+					<option name="abstract" value="true"/>
+					<cluster name="containers"/>
+					<cluster name="dialogs"/>
+					<cluster name="primitives"/>
+				</cluster>
+			</cluster>
+			<cluster name="mswin" prefix="mswin_" if="${GOBO_OS}=windows">
+				<option name="abstract" value="true"/>
+				<cluster name="events"/>
+				<cluster name="items"/>
+				<cluster name="kernel"/>
+				<cluster name="properties"/>
+				<cluster name="support"/>
+				<cluster name="widgets">
+					<cluster name="containers"/>
+					<cluster name="dialogs"/>
+					<cluster name="primitives"/>
+				</cluster>
+			</cluster>
+		</cluster>
+		<cluster name="interface" prefix="i_">
+			<option name="abstract" value="true"/>
+			<cluster name="events"/>
+			<cluster name="figures"/>
+			<cluster name="items"/>
+			<cluster name="kernel"/>
+			<cluster name="properties"/>
+			<cluster name="support"/>
+			<cluster name="widgets">
+				<cluster name="containers"/>
+				<cluster name="dialogs"/>
+				<cluster name="primitives"/>
+			</cluster>
+		</cluster>
+
+		<option>
+			<option name="header" value="$(ISE_EIFFEL)/library/vision2/spec/include"/>
+			<option name="link" value="$(ISE_EIFFEL)/library/vision2/spec/$(ISE_C_COMPILER)/lib/vision2.lib"/>
+			<option name="link" value="$(ISE_EIFFEL)/library/vision2/spec/$(ISE_C_COMPILER)/lib/libpng.lib"/>
+			<option name="link" value="$(ISE_EIFFEL)/library/vision2/spec/$(ISE_C_COMPILER)/lib/zlib.lib"/>
+		</option>
+	</cluster>
+
+</library>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<system name="log4e_servlet">
+	<description>
+		description: "XAce file for Goanna Log4e configuration servlet example"
+		project: "Project Goanna [http://sourceforge.net/projects/goanna]"
+		date: "$Date$"
+		revision: "$Revision$"
+		author: "Glenn Maughan [glennmaughan@optushome.com.au]"
+		copyright: "Copyright (c) 2001 Glenn Maughan and others"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+		thanks: "Modified version of GOBO ant files"
+	</description>
+
+	<root class="SERVLET_SERVER" creation="make"/>
+
+	<option unless="${DEBUG}">
+		<option name="assertion" value="none"/>
+	</option>
+	<option if="${DEBUG}">
+		<option name="assertion" value="all"/>
+	</option>
+
+	<cluster name="root_cluster" location="${LOG4E}/examples/servlet"/>
+	
+	<mount location="${GOBO}/library/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${LOG4E}/library/library.xace"/>
+	<mount location="${GOANNA}/library/library.xace"/>
+	<mount location="${GOANNA}/library/yaesockets.xace"/>
+
+</system>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<config xmlns="http://goanna.info/spec/log4e">
+
+	<appender name="STDOUT" type="stdout"/>
+
+	<appender name="STDERR" type="stderr">
+	</appender>
+
+	<appender name="file" type="file">
+		<param name="filename" value="test.log"/>
+	</appender>
+
+	<appender name="file2" type="file">
+		<param name="filename" value="test2.log"/>
+		<param name="append" value="true"/>
+	</appender>
+
+	<appender name="file3" type="rollingfile">
+		<param name="filename" value="test3.log"/>
+		<param name="append" value="true"/>
+		<param name="maxsize" value="4096"/>
+		<param name="numbackups" value="5"/>
+	</appender>
+
+	<appender name="file4" type="calendarrolling">
+		<param name="filename" value="test4.log"/>
+		<param name="append" value="true"/>
+		<param name="numbackups" value="5"/>
+		<filter type="prioritymatch">
+			<param name="priority" value="debug"/>
+			<param name="match" value="true"/>
+		</filter>
+		<filter type="priorityrange">
+			<param name="prioritystart" value="info"/>
+			<param name="priorityend" value="fatal"/>
+			<param name="match" value="false"/>
+		</filter>
+		<filter type="stringmatch">
+			<param name="string" value="test"/>
+			<param name="match" value="true"/>
+		</filter>
+	</appender>
+
+	<category name="test.cat" priority="info" additive="false">
+		<appender-ref ref="STDOUT"/>
+	</category>
+
+	<root priority="debug">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="file"/>
+	</root>
+
+</config>
