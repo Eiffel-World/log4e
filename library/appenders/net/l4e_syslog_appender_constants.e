@@ -56,28 +56,28 @@ feature
 	Log_ftp: INTEGER is 88
 			-- FTP daemon
 			
-	Log_local0: INTEGER is 96
+	Log_local0: INTEGER is 128
 			-- Local use
 			
-	Log_local1: INTEGER is 104
+	Log_local1: INTEGER is 136
 			-- Local use
 			
-	Log_local2: INTEGER is 112
+	Log_local2: INTEGER is 144
 			-- Local use
 			
-	Log_local3: INTEGER is 120
+	Log_local3: INTEGER is 152
 			-- Local use
 			
-	Log_local4: INTEGER is 128
+	Log_local4: INTEGER is 160
 			-- Local use
 			
-	Log_local5: INTEGER is 136
+	Log_local5: INTEGER is 168
 			-- Local use
 			
-	Log_local6: INTEGER is 144
+	Log_local6: INTEGER is 176
 			-- Local use
 			
-	Log_local7: INTEGER is 152
+	Log_local7: INTEGER is 184
 			-- Local use
 
 	is_valid_facility (facility: INTEGER): BOOLEAN is
