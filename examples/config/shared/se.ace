@@ -1,0 +1,129 @@
+system
+
+	log4e_shared_config
+
+root
+
+	LOG4E_SHARED_CONFIG: make
+
+default
+
+	assertion (boost)
+	case_insensitive (yes)
+	debug (no)
+	collect (yes)
+	high_memory_compiler (no)
+	manifest_string_trace (no)
+	trace (no)
+	verbose (no)
+	no_style_warning (yes)
+	no_warning (no)
+
+cluster
+
+	root_cluster: "${LOG4E}/examples/config/shared"
+	base: "${SmallEiffelDirectory}/lib/base"
+	io: "${SmallEiffelDirectory}/lib/io"
+	iterator: "${SmallEiffelDirectory}/lib/iterator"
+	kernel: "${SmallEiffelDirectory}/lib/kernel"
+	number: "${SmallEiffelDirectory}/lib/number"
+	random: "${SmallEiffelDirectory}/lib/random"
+	sorting: "${SmallEiffelDirectory}/lib/sorting"
+	time: "${SmallEiffelDirectory}/lib/time"
+	l4e_log4e: "${LOG4E}/library"
+	l4e_appenders: "${LOG4E}/library/appenders"
+	l4e_nt: "${LOG4E}/library/appenders/nt"
+	l4e_config: "${LOG4E}/library/config"
+	l4e_filters: "${LOG4E}/library/filters"
+	l4e_helpers: "${LOG4E}/library/helpers"
+	l4e_layouts: "${LOG4E}/library/layouts"
+	l4e_pattern: "${LOG4E}/library/layouts/pattern"
+	kl_basic: "${GOBO}/library/kernel/basic"
+	kl_elks: "${GOBO}/library/kernel/elks"
+	kl_io: "${GOBO}/library/kernel/io"
+	kl_misc: "${GOBO}/library/kernel/misc"
+	kl_unicode: "${GOBO}/library/kernel/unicode"
+	kl_support: "${GOBO}/library/kernel/support"
+	kl_spec_se: "${GOBO}/library/kernel/spec/se"
+	lx_automaton: "${GOBO}/library/lexical/automaton"
+	lx_error: "${GOBO}/library/lexical/error"
+	lx_generation: "${GOBO}/library/lexical/generation"
+	lx_lex: "${GOBO}/library/lexical/lex"
+	lx_regexp: "${GOBO}/library/lexical/regexp"
+	lx_scanner: "${GOBO}/library/lexical/scanner"
+	lx_skeleton: "${GOBO}/library/lexical/skeleton"
+	lx_support: "${GOBO}/library/lexical/support"
+	pr_error: "${GOBO}/library/parse/error"
+	pr_fsm: "${GOBO}/library/parse/fsm"
+	pr_generation: "${GOBO}/library/parse/generation"
+	pr_grammar: "${GOBO}/library/parse/grammar"
+	pr_parser: "${GOBO}/library/parse/parser"
+	pr_skeleton: "${GOBO}/library/parse/skeleton"
+	pr_support: "${GOBO}/library/parse/support"
+	pr_yacc: "${GOBO}/library/parse/yacc"
+	dp_command: "${GOBO}/library/pattern/command"
+	dp_bridge: "${GOBO}/library/pattern/bridge"
+	rx_interface: "${GOBO}/library/regexp/interface"
+	rx_pcre: "${GOBO}/library/regexp/pcre"
+	rx_support: "${GOBO}/library/regexp/support"
+	ds_container: "${GOBO}/library/structure/container"
+	ds_dispenser: "${GOBO}/library/structure/dispenser"
+	ds_list: "${GOBO}/library/structure/list"
+	ds_set: "${GOBO}/library/structure/set"
+	ds_sort: "${GOBO}/library/structure/sort"
+	ds_support: "${GOBO}/library/structure/support"
+	ds_table: "${GOBO}/library/structure/table"
+	ts_generation: "${GOBO}/library/test/generation"
+	ts_harness: "${GOBO}/library/test/harness"
+	dt_clock: "${GOBO}/library/time/clock"
+	dt_date: "${GOBO}/library/time/date"
+	dt_time_zone: "${GOBO}/library/time/time_zone"
+	et_eiffel_assertion: "${GOBO}/library/tools/eiffel/ast/assertion"
+	et_eiffel_class: "${GOBO}/library/tools/eiffel/ast/class"
+	et_eiffel_constant: "${GOBO}/library/tools/eiffel/ast/constant"
+	et_eiffel_expression: "${GOBO}/library/tools/eiffel/ast/expression"
+	et_eiffel_feature: "${GOBO}/library/tools/eiffel/ast/feature"
+	et_eiffel_instruction: "${GOBO}/library/tools/eiffel/ast/instruction"
+	et_eiffel_lace: "${GOBO}/library/tools/eiffel/ast/lace"
+	et_eiffel_misc: "${GOBO}/library/tools/eiffel/ast/misc"
+	et_eiffel_name: "${GOBO}/library/tools/eiffel/ast/name"
+	et_eiffel_type: "${GOBO}/library/tools/eiffel/ast/type"
+	et_eiffel_error: "${GOBO}/library/tools/eiffel/error"
+	et_eiffel_parser: "${GOBO}/library/tools/eiffel/parser"
+	et_lace_ast: "${GOBO}/library/tools/lace/ast"
+	et_lace_error: "${GOBO}/library/tools/lace/error"
+	et_lace_parser: "${GOBO}/library/tools/lace/parser"
+	et_xace_ast: "${GOBO}/library/tools/xace/ast"
+	et_xace_error: "${GOBO}/library/tools/xace/error"
+	et_xace_generator: "${GOBO}/library/tools/xace/generator"
+	et_xace_parser: "${GOBO}/library/tools/xace/parser"
+	et_xace_support: "${GOBO}/library/tools/xace/support"
+	ut_error: "${GOBO}/library/utility/error"
+	ut_formatter: "${GOBO}/library/utility/formatter"
+	ut_command: "${GOBO}/library/utility/command"
+	ut_support: "${GOBO}/library/utility/support"
+	xm_position: "${GOBO}/library/xml/position"
+	xm_source: "${GOBO}/library/xml/source"
+	xm_general: "${GOBO}/library/xml/general"
+	xm_event: "${GOBO}/library/xml/event"
+	xm_tree: "${GOBO}/library/xml/tree"
+	xm_formatter: "${GOBO}/library/xml/formatter"
+	xm_interface: "${GOBO}/library/xml/parser/interface"
+	xm_eiffel: "${GOBO}/library/xml/parser/eiffel"
+	xm_no_expat: "${GOBO}/library/xml/parser/no_expat"
+
+external
+
+	external_header_path:
+		"$(LOG4E)/library/appenders/nt/lib"
+
+generate
+
+	clean (no)
+	gc_info (no)
+	no_split (yes)
+	no_strip (no)
+	no_main (no)
+	wedit (no)
+
+end

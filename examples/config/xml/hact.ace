@@ -1,0 +1,181 @@
+system
+
+	log4e_xml_config
+
+root
+
+	LOG4E_XML_CONFIG: "make"
+
+default
+
+	address_expression (no);
+	array_optimization (no);
+	assertion (no);
+	check_vape (yes);
+	console_application (yes);
+	create_keyword_extension (yes);
+	dead_code_removal (yes);
+	optimize (yes);
+	debug (no);
+	dynamic_runtime_library (no);
+	exception_trace (no);
+	garbage_collector ("internal");
+	inlining (no);
+	inlining_size ("4");
+	linux_fpu_double_precision (no);
+	portable_code_generation (no);
+	trace (no);
+	warning_level ("default");
+
+cluster
+
+	root_cluster: "${LOG4E}/examples/config/xml";
+	l4e_log4e: "${LOG4E}/library"
+		cluster
+			appenders
+				cluster
+					nt;
+				end;
+			config;
+			filters;
+			helpers;
+			layouts
+				cluster
+					pattern;
+				end;
+		end;
+	abstract kl_kernel: "${GOBO}/library/kernel"
+		cluster
+			basic;
+			elks;
+			io;
+			misc;
+			unicode;
+			support;
+			abstract spec
+				cluster
+					hact;
+				end;
+		end;
+	abstract lx_lexical: "${GOBO}/library/lexical"
+		cluster
+			automaton;
+			error;
+			generation;
+			lex;
+			regexp;
+			scanner;
+			skeleton;
+			support;
+		end;
+	abstract pr_parse: "${GOBO}/library/parse"
+		cluster
+			error;
+			fsm;
+			generation;
+			grammar;
+			parser;
+			skeleton;
+			support;
+			yacc;
+		end;
+	abstract dp_pattern: "${GOBO}/library/pattern"
+		cluster
+			command;
+			bridge;
+		end;
+	abstract rx_regexp: "${GOBO}/library/regexp"
+		cluster
+			interface;
+			pcre;
+			support;
+		end;
+	abstract ds_structure: "${GOBO}/library/structure"
+		cluster
+			container;
+			dispenser;
+			list;
+			set;
+			sort;
+			support;
+			table;
+		end;
+	abstract ts_test: "${GOBO}/library/test"
+		cluster
+			generation;
+			harness;
+		end;
+	abstract dt_time: "${GOBO}/library/time"
+		cluster
+			clock;
+			date;
+			time_zone;
+		end;
+	abstract et_tools: "${GOBO}/library/tools"
+		cluster
+			abstract eiffel
+				cluster
+					abstract ast
+						cluster
+							"assertion";
+							class;
+							constant;
+							expression;
+							feature;
+							instruction;
+							lace;
+							misc;
+							name;
+							type;
+						end;
+					error;
+					parser;
+				end;
+			abstract lace
+				cluster
+					ast;
+					error;
+					parser;
+				end;
+			abstract xace
+				cluster
+					ast;
+					error;
+					generator;
+					parser;
+					support;
+				end;
+		end;
+	abstract ut_utility: "${GOBO}/library/utility"
+		cluster
+			error;
+			formatter;
+			command;
+			support;
+		end;
+	abstract xm_xml: "${GOBO}/library/xml"
+		cluster
+			position;
+			source;
+			general;
+			event;
+			tree;
+			formatter;
+			abstract parser
+				cluster
+					interface;
+					eiffel;
+					no_expat;
+				end;
+		end;
+
+component
+
+	base: "${ISS_BASE}/spec/${PLATFORM}/component/base.cl";
+
+external
+
+	include_path:
+		"$(LOG4E)/library/appenders/nt/lib";
+
+end
