@@ -5,7 +5,7 @@ indexing
 	date: "$Date$"
 	revision: "$Revision$"
 	author: "Glenn Maughan <glennmaughan@goanna.info>"
-	copyright: "Copyright (c) 2001 Glenn Maughan"
+	copyright: "Copyright (c) 2002 Glenn Maughan"
 	license: "Eiffel Forum License v1 (see forum.txt)."
 	
 class L4E_ROLLING_FILE_APPENDER
