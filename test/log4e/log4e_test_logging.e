@@ -13,12 +13,12 @@ inherit
 
 	TS_TEST_CASE
 
-	LOG_PRIORITY_CONSTANTS
+	L4E_PRIORITY_CONSTANTS
 		export
 			{NONE} all
 		end
 
-	LOG_FILTER_CONSTANTS
+	L4E_FILTER_CONSTANTS
 		export
 			{NONE} all
 		end
@@ -27,20 +27,20 @@ feature -- Test
 
 	test_log_hierarchy is
 		local
-			h: LOG_HIERARCHY
-			cat, cat2: LOG_CATEGORY
+			h: L4E_HIERARCHY
+			cat, cat2: L4E_LOGGER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")
+			cat := h.logger ("test")
 			assert ("test_cat_added", h.has ("test"))
 			
 			-- check that we get the same category if we use the same name
-			cat2 := h.category ("test")
+			cat2 := h.logger ("test")
 			assert_same ("same_cat", cat, cat2)
 			
 			-- check a complex category. All intermediate categories should
 			-- be created
-			cat := h.category ("a.b.c")
+			cat := h.logger ("a.b.c")
 			assert ("cat_a_exists", h.has ("a"))
 			assert ("cat_a.b_exists", h.has ("a.b"))
 			assert ("cat_a.b.c_exists", h.has ("a.b.c"))
@@ -49,105 +49,105 @@ feature -- Test
 
 	test_priority_inheritance is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
 		do
 			-- test example 1 from log4j docs
 			create h.make (Debug_p)
-			cat := h.category ("x.y.z")
+			cat := h.logger ("x.y.z")
 			assert ("inherited x.y.z", cat.priority = Debug_p)
-			assert ("inherited x.y", h.category ("x.y").priority = Debug_p)
-			assert ("inherited x", h.category ("x").priority = Debug_p)
+			assert ("inherited x.y", h.logger ("x.y").priority = Debug_p)
+			assert ("inherited x", h.logger ("x").priority = Debug_p)
 			
 			-- test example 2 from log4j docs
 			create h.make (Debug_p)
-			cat := h.category ("x.y.z")
+			cat := h.logger ("x.y.z")
 			cat.set_priority (Error_p)
-			cat := h.category ("x.y")
+			cat := h.logger ("x.y")
 			cat.set_priority (Fatal_p)
-			cat := h.category ("x")
+			cat := h.logger ("x")
 			cat.set_priority (Warn_p)
-			assert ("set x.y.z", h.category ("x.y.z").priority = Error_p)
-			assert ("set x.y", h.category ("x.y").priority = Fatal_p)
-			assert ("set x", h.category ("x").priority = Warn_p)
+			assert ("set x.y.z", h.logger ("x.y.z").priority = Error_p)
+			assert ("set x.y", h.logger ("x.y").priority = Fatal_p)
+			assert ("set x", h.logger ("x").priority = Warn_p)
 			
 			-- test example 3 from log4j docs
 			create h.make (Debug_p)
-			cat := h.category ("x.y.z")
+			cat := h.logger ("x.y.z")
 			cat.set_priority (Error_p)
-			cat := h.category ("x")
+			cat := h.logger ("x")
 			cat.set_priority (Warn_p)
-			assert ("set x.y.z", h.category ("x.y.z").priority = Error_p)
-			assert ("inherited x.y", h.category ("x.y").priority = Warn_p)
-			assert ("set x", h.category ("x").priority = Warn_p)
+			assert ("set x.y.z", h.logger ("x.y.z").priority = Error_p)
+			assert ("inherited x.y", h.logger ("x.y").priority = Warn_p)
+			assert ("set x", h.logger ("x").priority = Warn_p)
 			
 			-- test example 4 from log4j docs
 			create h.make (Debug_p)
-			cat := h.category ("x.y.z")
-			cat := h.category ("x")
+			cat := h.logger ("x.y.z")
+			cat := h.logger ("x")
 			cat.set_priority (Warn_p)
-			assert ("inherited x.y.z", h.category ("x.y.z").priority = Warn_p)
-			assert ("inherited x.y", h.category ("x.y").priority = Warn_p)
-			assert ("set x", h.category ("x").priority = Warn_p)	
+			assert ("inherited x.y.z", h.logger ("x.y.z").priority = Warn_p)
+			assert ("inherited x.y", h.logger ("x.y").priority = Warn_p)
+			assert ("set x", h.logger ("x").priority = Warn_p)	
 			
 			h.close_all
 		end
 
 	test_priority_match_filter is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			filter: LOG_FILTER
-			event: LOG_EVENT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			filter: L4E_FILTER
+			event: L4E_EVENT
 		do
 			-- create dummy hierarchy and category
 			create h.make (Debug_p)
-			cat := h.category ("test")
+			cat := h.logger ("test")
 
-			create {LOG_PRIORITY_MATCH_FILTER} filter.make (Info_p, true)
+			create {L4E_PRIORITY_MATCH_FILTER} filter.make (Info_p, true)
 
 			create event.make (cat, Info_p, "test event")
 			assert_equal ("info_match", filter.decide (event), Filter_accept)
 			
 			create event.make (cat, Debug_p, "test event")
-			assert_equal ("info_not_match_debug", filter.decide (event), Filter_reject)
+			assert_equal ("info_not_match_debug", filter.decide (event), Filter_neutral)
 			create event.make (cat, Warn_p, "test event")
-			assert_equal ("info_not_match_warn", filter.decide (event), Filter_reject)
+			assert_equal ("info_not_match_warn", filter.decide (event), Filter_neutral)
 			create event.make (cat, Error_p, "test event")
-			assert_equal ("info_not_match_error", filter.decide (event), Filter_reject)
+			assert_equal ("info_not_match_error", filter.decide (event), Filter_neutral)
 			create event.make (cat, Fatal_p, "test event")
-			assert_equal ("info_not_match_fatal", filter.decide (event), Filter_reject)	
+			assert_equal ("info_not_match_fatal", filter.decide (event), Filter_neutral)	
 
-			create {LOG_PRIORITY_MATCH_FILTER} filter.make (Info_p, false)
+			create {L4E_PRIORITY_MATCH_FILTER} filter.make (Info_p, false)
 			
 			create event.make (cat, Info_p, "test event")
 			assert_equal ("info_match", filter.decide (event), Filter_reject)
 			
 			create event.make (cat, Debug_p, "test event")
-			assert_equal ("info_not_match_debug", filter.decide (event), Filter_accept)
+			assert_equal ("info_not_match_debug", filter.decide (event), Filter_neutral)
 			create event.make (cat, Warn_p, "test event")
-			assert_equal ("info_not_match_warn", filter.decide (event), Filter_accept)
+			assert_equal ("info_not_match_warn", filter.decide (event), Filter_neutral)
 			create event.make (cat, Error_p, "test event")
-			assert_equal ("info_not_match_error", filter.decide (event), Filter_accept)
+			assert_equal ("info_not_match_error", filter.decide (event), Filter_neutral)
 			create event.make (cat, Fatal_p, "test event")
-			assert_equal ("info_not_match_fatal", filter.decide (event), Filter_accept)	
+			assert_equal ("info_not_match_fatal", filter.decide (event), Filter_neutral)	
 			
 			h.close_all
 		end
 		
 	test_priority_range_filter is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			filter: LOG_FILTER
-			event: LOG_EVENT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			filter: L4E_FILTER
+			event: L4E_EVENT
 		do
 			-- create dummy hierarchy and category
 			create h.make (Debug_p)
-			cat := h.category ("test")
+			cat := h.logger ("test")
 
-			-- Range includes Info, Warn and Error
-			create {LOG_PRIORITY_RANGE_FILTER} filter.make (Info_p, Error_p, true)
+			-- Range includes Info, Warn and Error. Accept on range match.
+			create {L4E_PRIORITY_RANGE_FILTER} filter.make (Info_p, Error_p, True)
 
 			create event.make (cat, Info_p, "test event")
 			assert_equal ("info_match", filter.decide (event), Filter_accept)
@@ -157,27 +157,27 @@ feature -- Test
 			assert_equal ("error_match", filter.decide (event), Filter_accept)
 
 			create event.make (cat, Fatal_p, "test event")
-			assert_equal ("fatal_not_match", filter.decide (event), Filter_reject)
+			assert_equal ("fatal_not_match", filter.decide (event), Filter_neutral)
 			create event.make (cat, Debug_p, "test event")
-			assert_equal ("debug_not_match", filter.decide (event), Filter_reject)
+			assert_equal ("debug_not_match", filter.decide (event), Filter_neutral)
 			
-			-- Range includes Info, Warn and Error. Neutral on range match.
-			create {LOG_PRIORITY_RANGE_FILTER} filter.make (Info_p, Error_p, false)
+			-- Range includes Info, Warn and Error. Reject on range match.
+			create {L4E_PRIORITY_RANGE_FILTER} filter.make (Info_p, Error_p, False)
 			
 			create event.make (cat, Info_p, "test event")
-			assert_equal ("info_match", filter.decide (event), Filter_neutral)
+			assert_equal ("info_match", filter.decide (event), Filter_reject)
 			create event.make (cat, Warn_p, "test event")
-			assert_equal ("warn_match", filter.decide (event), Filter_neutral)
+			assert_equal ("warn_match", filter.decide (event), Filter_reject)
 			create event.make (cat, Error_p, "test event")
-			assert_equal ("error_match", filter.decide (event), Filter_neutral)
+			assert_equal ("error_match", filter.decide (event), Filter_reject)
 
 			create event.make (cat, Fatal_p, "test event")
-			assert_equal ("fatal_not_match", filter.decide (event), Filter_reject)
+			assert_equal ("fatal_not_match", filter.decide (event), Filter_neutral)
 			create event.make (cat, Debug_p, "test event")
-			assert_equal ("debug_not_match", filter.decide (event), Filter_reject)
+			assert_equal ("debug_not_match", filter.decide (event), Filter_neutral)
 			
-			-- Range includes Info, Warn and Error and Fatal. Neutral on range match.
-			create {LOG_PRIORITY_RANGE_FILTER} filter.make (Info_p, Void, true)
+			-- Range includes Info, Warn and Error and Fatal. Accept on range match.
+			create {L4E_PRIORITY_RANGE_FILTER} filter.make (Info_p, Void, true)
 			
 			create event.make (cat, Info_p, "test event")
 			assert_equal ("info_match", filter.decide (event), Filter_accept)
@@ -189,10 +189,10 @@ feature -- Test
 			assert_equal ("fatal_not_match", filter.decide (event), Filter_accept)
 
 			create event.make (cat, Debug_p, "test event")
-			assert_equal ("debug_not_match", filter.decide (event), Filter_reject)
+			assert_equal ("debug_not_match", filter.decide (event), Filter_neutral)
 		
-			-- Range includes Debug, Info, Warn and Error. Neutral on range match.
-			create {LOG_PRIORITY_RANGE_FILTER} filter.make (Void, Error_p, true)
+			-- Range includes Debug, Info, Warn and Error. Reject on range match.
+			create {L4E_PRIORITY_RANGE_FILTER} filter.make (Void, Error_p, true)
 			
 			create event.make (cat, Info_p, "test event")
 			assert_equal ("info_match", filter.decide (event), Filter_accept)
@@ -204,29 +204,29 @@ feature -- Test
 			assert_equal ("debug_not_match", filter.decide (event), Filter_accept)
 
 			create event.make (cat, Fatal_p, "test event")
-			assert_equal ("fatal_not_match", filter.decide (event), Filter_reject)	
+			assert_equal ("fatal_not_match", filter.decide (event), Filter_neutral)	
 			
 			h.close_all
 		end
 	
 	test_string_match_filter is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			filter: LOG_FILTER
-			event: LOG_EVENT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			filter: L4E_FILTER
+			event: L4E_EVENT
 		do
 			-- create dummy hierarchy and category
 			create h.make (Debug_p)
-			cat := h.category ("test")
+			cat := h.logger ("test")
 
-			create {LOG_STRING_MATCH_FILTER} filter.make ("match", True)
+			create {L4E_STRING_MATCH_FILTER} filter.make ("match", True)
 			create event.make (cat, Info_p, "this contains match")
 			assert_equal ("match_true", filter.decide (event), Filter_accept)
 			create event.make (cat, Info_p, "doesn't contain it")
 			assert_equal ("no_match_true", filter.decide (event), Filter_neutral)
 			
-			create {LOG_STRING_MATCH_FILTER} filter.make ("match", False)
+			create {L4E_STRING_MATCH_FILTER} filter.make ("match", False)
 			create event.make (cat, Info_p, "this contains match")
 			assert_equal ("match_false", filter.decide (event), Filter_reject)
 			create event.make (cat, Info_p, "doesn't contain it")
@@ -237,14 +237,14 @@ feature -- Test
 	
 	test_file_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")
+			cat := h.logger ("test")
 			
-			create {LOG_FILE_APPENDER} appender.make ("log.txt", True)
+			create {L4E_FILE_APPENDER} appender.make ("log.txt", True)
 			cat.add_appender (appender)
 			
 			cat.debugging ("This is a test")
@@ -258,16 +258,16 @@ feature -- Test
 	
 	test_rolling_file_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
 			i: INTEGER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_ROLLING_FILE_APPENDER} appender.make ("log_rolling.txt", 200, 4, True)
+			cat := h.logger ("test")			
+			create {L4E_ROLLING_FILE_APPENDER} appender.make ("log_rolling.txt", 200, 4, True)
 			cat.add_appender (appender)	
-			create {LOG_ROLLING_FILE_APPENDER} appender.make ("log_rolling_2nd.txt", 100, 10, True)
+			create {L4E_ROLLING_FILE_APPENDER} appender.make ("log_rolling_2nd.txt", 100, 10, True)
 			cat.add_appender (appender)			
 			from
 				i := 1
@@ -287,14 +287,14 @@ feature -- Test
 
 	test_calendar_rolling_file_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
 			i: INTEGER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_CALENDAR_ROLLING_APPENDER} appender.make_minutely ("log_calendar_rolling.txt", 4, True)
+			cat := h.logger ("test")			
+			create {L4E_CALENDAR_ROLLING_APPENDER} appender.make_minutely ("log_calendar_rolling.txt", 4, True)
 			cat.add_appender (appender)	
 			from
 				i := 1
@@ -314,13 +314,13 @@ feature -- Test
 		
 	test_nt_event_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+--			h: L4E_HIERARCHY
+--			cat: L4E_LOGGER
+--			appender: L4E_APPENDER
 		do
 --			create h.make (Debug_p)
---			cat := h.category ("test")			
---			create {LOG_NT_EVENT_LOG_APPENDER} appender.make ("GoannaLog4e")
+--			cat := h.logger ("test")			
+--			create {L4E_NT_EVENT_L4E_APPENDER} appender.make ("GoannaLog4e")
 --			cat.add_appender (appender)	
 --			cat.fatal ("This is fatal")
 --			cat.error ("This is an error")
@@ -331,13 +331,13 @@ feature -- Test
 		
 	test_stdout_event_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_STDOUT_APPENDER} appender.make ("stdout")
+			cat := h.logger ("test")			
+			create {L4E_STDOUT_APPENDER} appender.make ("stdout")
 			cat.add_appender (appender)	
 			cat.fatal ("STDOUT: This is fatal")
 			cat.error ("STDOUT: This is an error")
@@ -350,13 +350,13 @@ feature -- Test
 		
 	test_stderr_event_appender is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_STDERR_APPENDER} appender.make ("stderr")
+			cat := h.logger ("test")			
+			create {L4E_STDERR_APPENDER} appender.make ("stderr")
 			cat.add_appender (appender)	
 			cat.fatal ("STDERR: This is fatal")
 			cat.error ("STDERR: This is an error")
@@ -369,15 +369,15 @@ feature -- Test
 	
 	test_time_layout is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
-			layout: LOG_LAYOUT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
+			layout: L4E_LAYOUT
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_STDOUT_APPENDER} appender.make ("stdout")
-			create {LOG_TIME_LAYOUT} layout.make
+			cat := h.logger ("test")			
+			create {L4E_STDOUT_APPENDER} appender.make ("stdout")
+			create {L4E_TIME_LAYOUT} layout.make
 			appender.set_layout (layout)
 			cat.add_appender (appender)	
 			cat.fatal ("This is fatal")
@@ -391,15 +391,15 @@ feature -- Test
 		
 	test_date_time_layout is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
-			layout: LOG_LAYOUT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
+			layout: L4E_LAYOUT
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_STDOUT_APPENDER} appender.make ("stdout")
-			create {LOG_TIME_LAYOUT} layout.make
+			cat := h.logger ("test")			
+			create {L4E_STDOUT_APPENDER} appender.make ("stdout")
+			create {L4E_TIME_LAYOUT} layout.make
 			appender.set_layout (layout)
 			cat.add_appender (appender)	
 			cat.fatal ("This is fatal")
@@ -413,7 +413,7 @@ feature -- Test
 		
 	test_log_pattern_parser is
 		local
-			converter: LOG_PATTERN_PARSER
+			converter: L4E_PATTERN_PARSER
 		do
 			create converter.make ("[@30m]")
 			--assert ("parsing_ok", converter.ok)
@@ -421,15 +421,15 @@ feature -- Test
 		
 	test_log_pattern_layout is
 		local
-			h: LOG_HIERARCHY
-			cat: LOG_CATEGORY
-			appender: LOG_APPENDER
-			layout: LOG_LAYOUT
+			h: L4E_HIERARCHY
+			cat: L4E_LOGGER
+			appender: L4E_APPENDER
+			layout: L4E_LAYOUT
 		do
 			create h.make (Debug_p)
-			cat := h.category ("test")			
-			create {LOG_STDOUT_APPENDER} appender.make ("stdout")
-			create {LOG_PATTERN_LAYOUT} layout.make ("@d [@-6p] @c - @.10m%N")
+			cat := h.logger ("test")			
+			create {L4E_STDOUT_APPENDER} appender.make ("stdout")
+			create {L4E_PATTERN_LAYOUT} layout.make ("@d [@-6p] @c - @.10m%N")
 			appender.set_layout (layout)
 			cat.add_appender (appender)	
 			cat.fatal ("This is fatal")
@@ -443,14 +443,14 @@ feature -- Test
 		
 --	test_syslog_appender is
 --		local
---			h: LOG_HIERARCHY
---			cat: LOG_CATEGORY
---			appender: LOG_APPENDER
---			facilities: expanded LOG_SYSLOG_APPENDER_CONSTANTS
+--			h: L4E_HIERARCHY
+--			cat: L4E_LOGGER
+--			appender: L4E_APPENDER
+--			facilities: expanded L4E_SYSL4E_APPENDER_CONSTANTS
 --		do
 --			create h.make (Debug_p)
---			cat := h.category ("test")			
---			create {LOG_SYSLOG_APPENDER} appender.make ("stdout", "192.168.0.46", facilities.Log_local0)
+--			cat := h.logger ("test")			
+--			create {L4E_SYSLOG_APPENDER} appender.make ("stdout", "192.168.0.46", facilities.Log_local0)
 --			cat.add_appender (appender)	
 --			cat.fatal ("This is fatal")
 --			cat.error ("This is an error")
@@ -461,11 +461,11 @@ feature -- Test
 
 	test_shared_log_hierarchy is
 		local
-			shared_hierarchy: expanded LOG_SHARED_HIERARCHY
-			appender: LOG_APPENDER
+			shared_hierarchy: expanded L4E_SHARED_HIERARCHY
+			appender: L4E_APPENDER
 		do
-			create {LOG_STDOUT_APPENDER} appender.make ("stdout")
-			shared_hierarchy.log_hierarchy.category ("test.cat").add_appender (appender)
+			create {L4E_STDOUT_APPENDER} appender.make ("stdout")
+			shared_hierarchy.log_hierarchy.logger ("test.cat").add_appender (appender)
 			shared_hierarchy.fatal ("test.cat", "This is fatal for shared")
 			shared_hierarchy.error ("test.cat", "This is an error for shared")
 			shared_hierarchy.warn ("test.cat", "This is a warning for shared")
@@ -475,10 +475,10 @@ feature -- Test
 	
 	test_log_xml_config is
 		local
-			shared_hierarchy: expanded LOG_SHARED_HIERARCHY
-			config: LOG_XML_CONFIG_PARSER
+--			shared_hierarchy: expanded L4E_SHARED_HIERARCHY
+			config: L4E_XML_CONFIG_PARSER
 		do
 			create config.make ("log_config.xml")
 		end	
 		
-end -- class TEST_LOG_HIERARCHY
+end -- class TEST_L4E_HIERARCHY
