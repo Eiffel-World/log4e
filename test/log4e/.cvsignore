@@ -10,3 +10,5 @@ TESTGEN
 EIFGEN
 *.id
 *.txt*
+*.c
+*.h
