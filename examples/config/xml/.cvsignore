@@ -6,3 +6,5 @@ TESTGEN
 *.epr
 *.melted
 EIFGEN
+*.ace
+*.esd

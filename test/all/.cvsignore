@@ -8,3 +8,5 @@ TESTGEN
 *.ace
 *.esd
 EIFGEN
+*.ace
+*.esd
