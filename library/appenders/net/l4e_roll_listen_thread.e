@@ -11,10 +11,6 @@ indexing
 class
 	L4E_ROLL_LISTEN_THREAD
 
-obsolete 
-
-	"This class is not yet fully functional"
-
 inherit
 	
 	THREAD
