@@ -4,11 +4,11 @@ indexing
 	library: "log4e"
 	date: "$Date$"
 	revision: "$Revision$"
-	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
-	copyright: "Copyright (c) 2001 Glenn Maughan and others"
-	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
+	author: "Glenn Maughan <glennmaughan@goanna.info>"
+	copyright: "Copyright (c) 2001 Glenn Maughan"
+	license: "Eiffel Forum License v1 (see forum.txt)."
 	
-class L4E_LOGGEr
+class L4E_LOGGER
 	
 inherit
 	
