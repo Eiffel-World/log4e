@@ -223,6 +223,15 @@ feature {NONE} -- Implementation
 			end
 		end
 
+feature -- Removal
+
+	dispose is
+			-- Close this appender when garbage collected. Perform
+			-- minimal operations to release resources. Do not call
+			-- other object as they may have been garbage collected.
+		do
+		end
+		
 feature {NONE} -- External routines
 
 	c_reg_create_key_ex (parent_key: POINTER; key_name: POINTER; res: INTEGER; clas: POINTER; opt, sam: INTEGER; 

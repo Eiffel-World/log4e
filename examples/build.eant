@@ -76,10 +76,13 @@
 			in all subdirectories.
 		</description>
 
+		<geant file="build.eant" target="${target}" dir="config/manual"/>
+		<geant file="build.eant" target="${target}" dir="config/xml"/>
 		<geant file="build.eant" target="${target}" dir="servlet"/>
 		<geant file="build.eant" target="${target}" dir="socket/client"/>
 		<geant file="build.eant" target="${target}" dir="socket/server"/>
 		<geant file="build.eant" target="${target}" dir="vision"/>
+		<geant file="build.eant" target="${target}" dir="nteventlog"/>
 	</target>
 
 </project>
