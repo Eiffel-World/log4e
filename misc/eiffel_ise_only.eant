@@ -89,11 +89,9 @@
 		</description>
 
 		<ise clean="${system}"/>
-		<hact clean="${system}"/>
 		<se clean="${system}"/>
 		<ve clean="${system}" recursive="true"/>
 		<delete file="compile_ise.ace"/>
-		<delete file="compile_hact.ace"/>
 		<delete file="compile_se.ace"/>
 		<delete file="compile_ve.esd"/>
 		<geant target="other_clean"/>
@@ -106,7 +104,6 @@
 
 		<geant target="clean"/>
 		<delete file="ise.ace"/>
-		<delete file="hact.ace"/>
 		<delete file="se.ace"/>
 		<delete file="ve.esd"/>
 		<delete file="${system}${exe}"/>

@@ -58,11 +58,11 @@ feature -- Status Report
 	
 feature -- Transformation
 
-	as_storable: L4E_STORABLE_EVENT is
+--	as_storable: L4E_STORABLE_EVENT is
 			-- Convert to a storable memento object
-		do
-			create Result.make (Current)
-		end
+--		do
+--			create Result.make (Current)
+--		end
 		
 feature {NONE} -- Implementation
 	

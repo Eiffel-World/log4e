@@ -481,4 +481,4 @@ feature -- Test
 			create config.make ("log_config.xml")
 		end	
 		
-end -- class TEST_L4E_HIERARCHY
+end -- class LOG4E_TEST_LOGGING

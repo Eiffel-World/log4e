@@ -49,7 +49,7 @@ feature -- Basic operations
 			s: STRING
 			len: INTEGER
 		do
-			s := convert (event)
+			s := convert_event (event)
 			if s = Void then
 				if 0 < min then
 					space_pad (sbuf, min)
@@ -74,7 +74,7 @@ feature -- Basic operations
 	
 feature {NONE} -- Implementation
 	
-	convert (event: L4E_EVENT): STRING is
+	convert_event (event: L4E_EVENT): STRING is
 			-- Convert conversion specifiers appropriately.
 		require
 			event_exists: event /= Void

@@ -24,6 +24,8 @@ inherit
 			{NONE} all
 		undefine
 			dispose
+		redefine
+			dispose
 		end
 	
 feature -- Initialisation

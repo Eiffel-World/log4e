@@ -46,7 +46,7 @@ feature {NONE} -- Implementation
 	literal: STRING
 			-- String to format
 	
-	convert (event: L4E_EVENT): STRING is
+	convert_event (event: L4E_EVENT): STRING is
 			-- Convert conversion specifiers appropriately.
 		do
 			-- not used

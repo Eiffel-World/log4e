@@ -74,9 +74,9 @@ feature {NONE} -- Implementation
 			env: expanded KL_OPERATING_SYSTEM
 		do
 			if env.is_windows then
-				stream := create {KL_WINDOWS_OUTPUT_FILE}.make (name)
+				create {KL_WINDOWS_OUTPUT_FILE} stream.make (name)
 			else
-				stream := create {KL_UNIX_OUTPUT_FILE}.make (name)
+				create {KL_UNIX_OUTPUT_FILE} stream.make (name)
 			end
 			if append_mode then
 				stream.open_append

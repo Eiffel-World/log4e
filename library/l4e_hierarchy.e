@@ -63,6 +63,7 @@ feature -- Logger Factory
 		local
 			c: DS_HASH_TABLE_CURSOR [L4E_LOGGER, STRING]
 			sorter: DS_QUICK_SORTER [L4E_LOGGER]
+			a_comparator: DS_COMPARABLE_COMPARATOR [L4E_LOGGER]
 		do
 			create {DS_LINKED_LIST [L4E_LOGGER]} Result.make
 			from
@@ -74,7 +75,8 @@ feature -- Logger Factory
 				Result.put_last (c.item)
 				c.forth
 			end
-			create sorter.make (create {DS_COMPARABLE_COMPARATOR [L4E_LOGGER]}.make)
+			create a_comparator.make
+			create sorter.make (a_comparator)
 			Result.sort (sorter)
 			Result.put_first (root)
 		end
