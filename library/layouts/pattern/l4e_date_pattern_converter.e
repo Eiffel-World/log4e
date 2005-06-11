@@ -41,4 +41,4 @@ feature {NONE} -- Implementation
 			Result := event.time_stamp.out
 		end
 	
-end -- L4E_DATE_PATTERN_CONVERTER
+end -- class L4E_DATE_PATTERN_CONVERTER

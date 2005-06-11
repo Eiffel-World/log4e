@@ -41,4 +41,4 @@ feature {NONE} -- Implementation
 			Result := event.logger.name
 		end
 	
-end -- L4E_CATEGORY_PATTERN_CONVERTER
+end -- class L4E_CATEGORY_PATTERN_CONVERTER

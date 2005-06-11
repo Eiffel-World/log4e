@@ -26,4 +26,4 @@ feature {NONE} -- Implementation
 			Result := event.rendered_message
 		end
 	
-end -- L4E_MESSAGE_PATTERN_CONVERTER
+end -- class L4E_MESSAGE_PATTERN_CONVERTER

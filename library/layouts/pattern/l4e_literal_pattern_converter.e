@@ -38,7 +38,7 @@ feature -- Basic operations
 	format (sbuf: STRING; event: L4E_EVENT) is
 			-- Format literal and append to 'sbuf'
 		do
-			sbuf.append (literal)
+			sbuf.append_string (literal)
 		end
 	
 feature {NONE} -- Implementation

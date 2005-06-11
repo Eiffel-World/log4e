@@ -57,7 +57,7 @@ feature -- Basic operations
 			else
 				len := s.count
 				if len > max then
-					sbuf.append (s.substring (len - max + 1, len))
+					sbuf.append_string (s.substring (len - max + 1, len))
 				elseif len < min then
 					if left_align then
 						sbuf.append (s)

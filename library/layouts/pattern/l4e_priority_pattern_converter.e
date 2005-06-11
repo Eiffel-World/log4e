@@ -26,4 +26,4 @@ feature {NONE} -- Implementation
 			Result := event.priority.level_str
 		end
 	
-end -- L4E_PRIORITY_PATTERN_CONVERTER
+end -- class L4E_PRIORITY_PATTERN_CONVERTER
