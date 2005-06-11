@@ -60,14 +60,14 @@ feature -- Basic operations
 					sbuf.append_string (s.substring (len - max + 1, len))
 				elseif len < min then
 					if left_align then
-						sbuf.append (s)
+						sbuf.append_string (s)
 						space_pad (sbuf, min - len)
 					else
 						space_pad (sbuf, min - len)
-						sbuf.append (s)
+						sbuf.append_string (s)
 					end
 				else
-					sbuf.append (s)
+					sbuf.append_string (s)
 				end
 			end
 		end
@@ -93,7 +93,7 @@ feature {NONE} -- Implementation
 		do
 			create pad.make_filled (' ', length) -- fix for Bug 764301
 
-			str.append (pad)
+			str.append_string (pad)
 		ensure
 			correct_size: str.count >= old str.count + length
 		end

@@ -28,9 +28,9 @@ feature -- Rendering
 			-- Format is: priority - message
 		do
 			Result := clone (event.priority.level_str)
-			Result.append (" - ")
-			Result.append (event.rendered_message)
-			Result.append ("%N")
+			Result.append_string (" - ")
+			Result.append_string (event.rendered_message)
+			Result.append_string ("%N")
 		end
 
 	header: STRING is
