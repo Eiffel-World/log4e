@@ -28,10 +28,10 @@ inherit
 			{ANY} is_valid_facility
 		end
 	
-	SOCKET_ERRORS 		
-		export
-			{NONE} all
-		end
+--	SOCKET_ERRORS 		
+--		export
+--			{NONE} all
+--		end
 
 	L4E_SHARED_LOG_LOG
 		export
@@ -64,15 +64,15 @@ feature -- Initialization
 			sensible_port: port > 0
 			valid_facility: is_valid_facility (facility)
 		do
-			create socket.make_connecting_to_port (host, port)
-			if socket.last_error_code /= Sock_err_no_error then
-				internal_log.error ("Syslog socket connect error: " + socket.last_error_code.out)
-				internal_log.error ("    Socket error code: " + socket.last_socket_error_code.out)
-				internal_log.error ("    Extended socket error code: " + socket.last_extended_socket_error_code.out)
-
-			end
-			log_facility := facility
-			appender_make (new_name)
+--			create socket.make_connecting_to_port (host, port)
+--			if socket.last_error_code /= Sock_err_no_error then
+--				internal_log.error ("Syslog socket connect error: " + socket.last_error_code.out)
+--				internal_log.error ("    Socket error code: " + socket.last_socket_error_code.out)
+--				internal_log.error ("    Extended socket error code: " + socket.last_extended_socket_error_code.out)
+--
+--			end
+--			log_facility := facility
+--			appender_make (new_name)
 		end	
 		
 feature -- Status Setting
@@ -81,7 +81,7 @@ feature -- Status Setting
 			-- Release any resources for this appender.
 		do
 			if not is_open then
-				socket.close
+--				socket.close
 				is_open := False
 			end
 		end	
@@ -91,16 +91,16 @@ feature {NONE} -- Implementation
 	do_append (event: L4E_EVENT) is
 			-- Append 'event' to this appender
 		do
-			socket.send_string (layout.format (event))
-			if socket.last_error_code /= Sock_err_no_error then
-				internal_log.error ("Syslog socket write error: " + socket.last_error_code.out)
-				internal_log.error ("    Socket error code: " + socket.last_socket_error_code.out)
-				internal_log.error ("    Extended socket error code: " + socket.last_extended_socket_error_code.out)
-
-			end
+--			socket.send_string (layout.format (event))
+--			if socket.last_error_code /= Sock_err_no_error then
+--				internal_log.error ("Syslog socket write error: " + socket.last_error_code.out)
+--				internal_log.error ("    Socket error code: " + socket.last_socket_error_code.out)
+--				internal_log.error ("    Extended socket error code: " + socket.last_extended_socket_error_code.out)
+--
+--			end
 		end	
 
-	socket: UDP_SOCKET
+--	socket: UDP_SOCKET
 			-- UDP socket for sending syslog datagrams
 	
 	log_facility: INTEGER
