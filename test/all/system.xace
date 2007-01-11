@@ -23,6 +23,5 @@
 	<mount location="${LOG4E}/library/library.xace"/>
 	<mount location="${LOG4E}/library/other/eiffelnet.xace"/>
 	<mount location="${LOG4E}/library/other/eiffelthread.xace"/>
-	<mount location="${LOG4E}/library/other/yaesockets.xace"/>
 
 </system>

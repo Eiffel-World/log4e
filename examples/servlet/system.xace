@@ -31,6 +31,5 @@
 	<mount location="${GOBO}/library/kernel.xace"/>
 	<mount location="${LOG4E}/library/library.xace"/>
 	<mount location="${GOANNA}/library/library.xace"/>
-	<mount location="${GOANNA}/library/yaesockets.xace"/>
 
 </system>
