@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?><system xmlns="http://www.eiffel.com/developers/xml/configuration-1-1-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-1-0 http://www.eiffel.com/developers/xml/configuration-1-1-0.xsd" name="log4e" uuid="65E3E91A-6C89-45B1-9F59-079A081D32D9" library_target="log4e">
 	<target name="log4e">
 		<root all_classes="true"/>
-		<option warning="true">
+		<option warning="false">
 			<assertions precondition="true" postcondition="true" check="true" invariant="true"/>
 		</option>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
