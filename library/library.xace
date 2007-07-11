@@ -24,6 +24,9 @@
 		<cluster name="layouts">
 			<cluster name="pattern"/>
 		</cluster>
+		<cluster name="spec">
+			<cluster name="singlethreaded"/>
+		</cluster>
 		<option name="header" value="$(LOG4E)/library/appenders/nt/lib" if="${GOBO_OS}=windows"/>
 	</cluster>
 
