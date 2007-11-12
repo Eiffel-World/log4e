@@ -7,6 +7,12 @@ For documentation point your browser at doc/index.htm.
 Notes
 -----
 
+Release XXX
+
+- Added thread safe logging capabilities
+
+- Added ecf configuration for EiffelStudio >= 5.7
+
 Release 1.0
 
 - Separated log4e library from Goanna libraries.
