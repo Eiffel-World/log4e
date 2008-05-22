@@ -7,7 +7,9 @@ For documentation point your browser at doc/index.htm.
 Notes
 -----
 
-Release XXX
+Release 1.2
+
+- Upgraded license to GPL version 3
 
 - Added thread safe logging capabilities
 

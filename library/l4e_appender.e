@@ -6,7 +6,7 @@ indexing
 	revision: "$Revision$"
 	author: "Glenn Maughan <glennmaughan@goanna.info>"
 	copyright: "Copyright (c) 2002 Glenn Maughan"
-	license: "Eiffel Forum License v1 (see forum.txt)."
+	license: "GNU General Public License version 3 (see gpl-3.0.txt)"
 	
 deferred class L4E_APPENDER
 		
