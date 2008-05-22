@@ -19,7 +19,7 @@ inherit
 			{NONE} pattern_converter_make
 		end
 
-creation
+create
 
 	make
 	

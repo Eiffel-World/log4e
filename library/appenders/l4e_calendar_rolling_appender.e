@@ -27,7 +27,7 @@ inherit
 			{NONE} all
 		end
 		
-creation
+create
 	
 	make, make_daily, make_minutely, make_hourly
 	

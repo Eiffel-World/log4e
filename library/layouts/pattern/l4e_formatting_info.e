@@ -11,7 +11,7 @@ indexing
 class
 	L4E_FORMATTING_INFO
 	
-creation
+create
 	
 	make
 	

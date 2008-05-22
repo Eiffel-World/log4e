@@ -29,7 +29,7 @@ inherit
 			format
 		end
 	
-creation
+create
 	
 	make
 	

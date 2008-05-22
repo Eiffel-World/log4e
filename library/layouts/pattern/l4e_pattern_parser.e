@@ -15,7 +15,7 @@ inherit
 	
 	L4E_SHARED_LOG_LOG
 		
-creation
+create
 	
 	make
 	
@@ -123,7 +123,7 @@ feature {NONE} -- Implementation
 							i := i + 1
 						else
 							if current_literal.count /= 0 then
-								create {L4E_LITERAL_PATTERN_CONVERTER} converter.make (clone (current_literal))
+								create {L4E_LITERAL_PATTERN_CONVERTER} converter.make (current_literal.twin)
 								converters.force_last (converter)
 							end
 							current_literal.wipe_out
@@ -181,7 +181,7 @@ feature {NONE} -- Implementation
 				i := i + 1
 			end
 			if current_literal.count /= 0 then 
-				create {L4E_LITERAL_PATTERN_CONVERTER} converter.make (clone (current_literal))
+				create {L4E_LITERAL_PATTERN_CONVERTER} converter.make (current_literal.twin)
 				converters.force_last (converter)
 			end
 		end
@@ -214,7 +214,7 @@ feature {NONE} -- Implementation
 				converter := priority_converter
 			else
 				internal_log.error ("Unexpected char [" + c.out + "at position " + i.out + " in conversion pattern.")
-				create literal_converter.make (clone (current_literal))
+				create literal_converter.make (current_literal.twin)
 				converter := literal_converter
 			end
 			current_literal.wipe_out

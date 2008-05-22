@@ -14,7 +14,7 @@ inherit
 	
 	L4E_APPENDER
 
-creation
+create
 	
 	make
 

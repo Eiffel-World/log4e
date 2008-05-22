@@ -14,7 +14,7 @@ inherit
 	
 	L4E_PRIORITY_CONSTANTS
 	
-creation
+create
 	
 	make
 	
@@ -63,7 +63,7 @@ feature -- Logger Factory
 		local
 			c: DS_HASH_TABLE_CURSOR [L4E_LOGGER, STRING]
 			sorter: DS_QUICK_SORTER [L4E_LOGGER]
-			a_comparator: DS_COMPARABLE_COMPARATOR [L4E_LOGGER]
+			a_comparator: KL_COMPARABLE_COMPARATOR [L4E_LOGGER]
 		do
 			create {DS_LINKED_LIST [L4E_LOGGER]} Result.make
 			from

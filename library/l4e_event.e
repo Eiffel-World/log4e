@@ -14,7 +14,7 @@ inherit
 	
 	DT_SHARED_SYSTEM_CLOCK
 
-creation
+create
 	
 	make
 	

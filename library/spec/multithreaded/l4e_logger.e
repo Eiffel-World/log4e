@@ -19,7 +19,7 @@ inherit
 			call_appenders, close_appenders
 		end
 
-creation
+create
 	make
 
 feature  {L4E_LOGGER_FACTORY} -- Creation 

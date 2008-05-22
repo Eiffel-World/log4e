@@ -14,7 +14,7 @@ class
 inherit
 	L4E_LOGGER_COMMON
 
-creation
+create
 
 	make
 

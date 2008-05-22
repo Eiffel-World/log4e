@@ -14,7 +14,7 @@ inherit
 	
 	L4E_PATTERN_CONVERTER
 
-creation
+create
 	
 	make
 		

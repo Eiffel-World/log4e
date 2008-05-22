@@ -27,7 +27,7 @@ feature -- Rendering
 			-- formatting rules. 
 			-- Format is: priority - message
 		do
-			Result := clone (event.priority.level_str)
+			Result := event.priority.level_str.twin
 			Result.append_string (" - ")
 			Result.append_string (event.rendered_message)
 			Result.append_string ("%N")

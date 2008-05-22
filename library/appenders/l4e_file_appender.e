@@ -19,7 +19,7 @@ inherit
 			{NONE} appender_make
 		end
 	
-creation
+create
 	
 	make
 	
