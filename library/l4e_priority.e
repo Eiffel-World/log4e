@@ -13,6 +13,9 @@ class L4E_PRIORITY
 inherit
 	
 	COMPARABLE
+		rename
+			is_less as infix "<"
+		end
 		
 create
 	
