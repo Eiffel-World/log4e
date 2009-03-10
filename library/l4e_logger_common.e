@@ -17,9 +17,6 @@ inherit
 		end
 
 	COMPARABLE
-		rename
-			is_less as infix "<"
-		end		
 
 feature {L4E_LOGGER_FACTORY} -- Initialisation
 
